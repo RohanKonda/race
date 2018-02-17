@@ -17,10 +17,17 @@ function preload() {
     //game.load.spritesheet('dude1', 'assets/dude.png',85,51);
      game.load.image('jump', 'assets/jump.png');
      game.load.image('shoot', 'assets/shoot.png');
+      game.load.audio('halloween', ['assets/audio/music.mp3', 'assets/audio/music.mp3']);
+
 
 
 }
+var music;
 function create() {
+
+    music = game.add.audio('halloween');
+
+    music.play();
 
 	scaleRatio = window.devicePixelRatio;
     //alert(window.devicePixelRatio);
@@ -125,12 +132,12 @@ ground.body.immovable = true;
     scoreText.scale.setTo(scaleRatio/2, scaleRatio/2);
     
     
-    jump = game.add.sprite(game.width - 900, game.height - 300, 'jump');
-     jump.scale.setTo(scaleRatio, scaleRatio);
+    jump = game.add.sprite(game.width - 680, game.height - 320, 'jump');
+     //jump.scale.setTo(scaleRatio, scaleRatio);
      jump.inputEnabled = true;
 
-     shoot = game.add.sprite(game.width - 2500, game.height - 300, 'shoot');
-       shoot.scale.setTo(scaleRatio, scaleRatio);
+     shoot = game.add.sprite(game.width - 1920, game.height - 320, 'shoot');
+    //shoot.scale.setTo(scaleRatio, scaleRatio);
       
 
    
@@ -155,7 +162,7 @@ timeSinceLastIncrement += game.time.elapsed;
 console.log(timeSinceLastIncrement);
 jump.events.onInputDown.add(onJump, this);
   
-   if (timeSinceLastIncrement > (Math.floor(Math.random() * 4000) + 1000))  // Random number between 1500 and 4000
+   if (timeSinceLastIncrement > (Math.floor(Math.random() * 3000) + 1000))  // Random number between 1500 and 4000
    {
     console.log('Inside');
      timeSinceLastIncrement = 0;
@@ -173,7 +180,7 @@ jump.events.onInputDown.add(onJump, this);
        alien.body.gravity.y = 6000;
       alien.animations.add('alien_run', [0,1,2,3,4,5,6], 6, true);
       alien.animations.play('alien_run');
-     alien.body.velocity.x=-1500;
+     alien.body.velocity.x=-1100;
      alien.events.onOutOfBounds.add(goodbye, this);
      console.log(alien.name+' '+alien.x)
 
