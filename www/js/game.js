@@ -16,6 +16,7 @@ function preload() {
     //game.load.spritesheet('dude', 'assets/dude.png',89,60);
     //game.load.spritesheet('dude1', 'assets/dude.png',85,51);
      game.load.image('jump', 'assets/jump.png');
+     game.load.image('shoot', 'assets/shoot.png');
 
 
 }
@@ -124,8 +125,12 @@ ground.body.immovable = true;
     scoreText.scale.setTo(scaleRatio/2, scaleRatio/2);
     
     
-         var jump = game.add.sprite(game.width - 300, game.height - 300, 'jump');
+    jump = game.add.sprite(game.width - 900, game.height - 300, 'jump');
      jump.scale.setTo(scaleRatio, scaleRatio);
+     jump.inputEnabled = true;
+
+     shoot = game.add.sprite(game.width - 2500, game.height - 300, 'shoot');
+       shoot.scale.setTo(scaleRatio, scaleRatio);
       
 
    
@@ -148,6 +153,7 @@ game.physics.arcade.collide(player, ground);
 
 timeSinceLastIncrement += game.time.elapsed;
 console.log(timeSinceLastIncrement);
+jump.events.onInputDown.add(onJump, this);
   
    if (timeSinceLastIncrement > (Math.floor(Math.random() * 4000) + 1000))  // Random number between 1500 and 4000
    {
@@ -194,7 +200,7 @@ if(player.body.touching.down && !playerKilled){
 
     }
 
-if(game.input.pointer1.isDown && player.body.touching.down && !playerKilled){
+if(jumpPressed && player.body.touching.down && !playerKilled){
 
  //player.loadTexture('dude1',7);
  //if (!flipFlop) {
@@ -205,6 +211,7 @@ if(game.input.pointer1.isDown && player.body.touching.down && !playerKilled){
     player.body.gravity.y = 8000;
     
    flipFlop = true;
+   jumpPressed = false;
 
 //}
 }
@@ -259,8 +266,14 @@ console.log('sprite deleted');
 
 }
 
+function onJump(){
+
+    jumpPressed = true;
+}
+
 var enableObstacleCollide = true;
 var platforms;
 var player;
 var alien;
 var score=0;
+var jumpPressed = false;
