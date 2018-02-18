@@ -1,4 +1,4 @@
-var game = new Phaser.Game(1920, 1080, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(1920, 1080, Phaser.CANVAS, '', { preload: preload, create: create, update: update });
 
 function preload() {
 
@@ -18,6 +18,7 @@ function preload() {
      game.load.image('jump', 'assets/jump.png');
      game.load.image('shoot', 'assets/shoot.png');
       game.load.audio('halloween', ['assets/audio/music.mp3', 'assets/audio/music.mp3']);
+      game.time.desiredFps = 30;
 
 
 
@@ -55,12 +56,12 @@ game.input.addPointer();
         'rocks_2'
     );
  
-    // this.clouds_1 = this.game.add.tileSprite(0,
-    //     this.game.height - this.game.cache.getImage('clouds_1').height,
-    //     this.game.width,
-    //     this.game.cache.getImage('clouds_1').height,
-    //     'clouds_1'
-    // );   
+    this.clouds_1 = this.game.add.tileSprite(0,
+        this.game.height - this.game.cache.getImage('clouds_1').height,
+        this.game.width,
+        this.game.cache.getImage('clouds_1').height,
+        'clouds_1'
+    );   
 
      this.clouds_2 = this.game.add.tileSprite(0,
         this.game.height - this.game.cache.getImage('clouds_2').height,
@@ -118,12 +119,15 @@ ground.body.immovable = true;
 
     //  Player physics properties. Give the little guy a slight bounce.
    // player.body.bounce.y = 0.2;
-   player.body.gravity.y = 7000;
+   player.body.gravity.y = 5000;
     player.body.collideWorldBounds = true;
+    player.body.checkCollision.left = false;
+    player.body.checkCollision.right = false;
     //player.loadTexture('dude1',7);
      player.animations.add('dead', [0,1,2,3,4,5,6,7,8,9], 10, false);
      player.animations.add('idle', [10,11,12,13,14,15,16,17,18,19], 10, true);
     player.animations.add('right', [30,31,32,33,34,35,36,37,38,39], 20, true);
+     player.animations.add('shoot', [50,51,52,53,54,55,56,57,58,59], 15, false);
      player.animations.add('jump', [20,21,22,23,24,25,26,27,28,29], 20, false);
     //player.animations.add('right', [0, 1, 2, 3,4,5,6], 12, true);
     //scaleSprite(player, game.width, game.height / 3, 50, 1);
@@ -137,9 +141,11 @@ ground.body.immovable = true;
      jump.inputEnabled = true;
 
      shoot = game.add.sprite(game.width - 1920, game.height - 320, 'shoot');
+      shoot.inputEnabled = true;
     //shoot.scale.setTo(scaleRatio, scaleRatio);
       
-
+jump.events.onInputDown.add(onJump, this);
+  shoot.events.onInputDown.add(onShoot, this);
    
 
 }
@@ -160,9 +166,9 @@ game.physics.arcade.collide(player, ground);
 
 timeSinceLastIncrement += game.time.elapsed;
 console.log(timeSinceLastIncrement);
-jump.events.onInputDown.add(onJump, this);
-  
-   if (timeSinceLastIncrement > (Math.floor(Math.random() * 3000) + 1000))  // Random number between 1500 and 4000
+
+
+   if (timeSinceLastIncrement > (Math.floor(Math.random() * 1300) + 500))  // Random number between 1500 and 4000
    {
     console.log('Inside');
      timeSinceLastIncrement = 0;
@@ -174,13 +180,15 @@ jump.events.onInputDown.add(onJump, this);
       alien.name = 'alien' + game.time.elapsed;
       console.log(alien.name);
       alien.checkWorldBounds = true;
+       alien.body.checkCollision.right = false;
+
       //alien = game.add.sprite(game.world.width-500, game.world.height - 400, 'alien1');
        alien.scale.setTo(scaleRatio, scaleRatio);
       game.physics.arcade.enable(alien);
-       alien.body.gravity.y = 6000;
+       alien.body.gravity.y = 5000;
       alien.animations.add('alien_run', [0,1,2,3,4,5,6], 6, true);
       alien.animations.play('alien_run');
-     alien.body.velocity.x=-1100;
+     alien.body.velocity.x=-800;
      alien.events.onOutOfBounds.add(goodbye, this);
      console.log(alien.name+' '+alien.x)
 
@@ -191,9 +199,9 @@ jump.events.onInputDown.add(onJump, this);
 
     this.rocks_1.tilePosition.x -= 0.05;
     this.rocks_2.tilePosition.x -= 1;
-    //this.clouds_1.tilePosition.x -= 0.75; 
+    this.clouds_1.tilePosition.x -= 0.75; 
     this.clouds_2.tilePosition.x -= 0.55; 
-    ground.tilePosition.x -= 24; 
+    ground.tilePosition.x -= 15; 
      
      //player.animations.play('idle');
      // player.body.velocity.x = 150;
@@ -201,7 +209,7 @@ jump.events.onInputDown.add(onJump, this);
 
 
 
-if(player.body.touching.down && !playerKilled){
+if(player.body.touching.down && !playerKilled && !shootPressed){
 
         player.animations.play('right');
 
@@ -215,10 +223,27 @@ if(jumpPressed && player.body.touching.down && !playerKilled){
     player.animations.play('jump');
     //player.body.bounce.y = 2;
     player.body.velocity.y = -2000
-    player.body.gravity.y = 8000;
+    player.body.gravity.y = 6000;
     
    flipFlop = true;
    jumpPressed = false;
+
+//}
+}
+
+
+if(shootPressed  && !playerKilled){
+
+ //player.loadTexture('dude1',7);
+ //if (!flipFlop) {
+    player.animations.stop(null, true);
+    player.animations.play('shoot');
+    //player.body.bounce.y = 2;
+    player.body.velocity.y = -800
+   // player.body.gravity.y = 6000;
+    
+   flipFlop = true;
+   shootPressed = false;
 
 //}
 }
@@ -278,9 +303,17 @@ function onJump(){
     jumpPressed = true;
 }
 
+
+function onShoot(){
+
+    shootPressed = true;
+}
+
+
 var enableObstacleCollide = true;
 var platforms;
 var player;
 var alien;
 var score=0;
 var jumpPressed = false;
+var shootPressed=false;
