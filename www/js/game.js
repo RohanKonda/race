@@ -17,6 +17,7 @@ function preload() {
     //game.load.spritesheet('dude1', 'assets/dude.png',85,51);
      game.load.image('jump', 'assets/jump.png');
      game.load.image('shoot', 'assets/shoot.png');
+      game.load.image('kunai', 'assets/kunai.png');
       game.load.audio('halloween', ['assets/audio/music.mp3', 'assets/audio/music.mp3']);
       game.time.desiredFps = 30;
 
@@ -80,6 +81,9 @@ game.input.addPointer();
     //  We will enable physics for any object that is created in this group
     aliens.enableBody = true;
 
+    kunais = game.add.group();
+    kunais.enableBody = true;
+
 
 // timeSinceLastIncrement += game.time.elapsed;
   
@@ -108,7 +112,8 @@ game.input.addPointer();
 
 ground.body.immovable = true;
   ground.body.allowGravity = false;
-   
+
+
 
       //alien.body.collideWorldBounds = true;
 
@@ -122,7 +127,7 @@ ground.body.immovable = true;
    player.body.gravity.y = 5000;
     player.body.collideWorldBounds = true;
     player.body.checkCollision.left = false;
-    player.body.checkCollision.right = false;
+  //  player.body.checkCollision.right = false;
     //player.loadTexture('dude1',7);
      player.animations.add('dead', [0,1,2,3,4,5,6,7,8,9], 10, false);
      player.animations.add('idle', [10,11,12,13,14,15,16,17,18,19], 10, true);
@@ -161,7 +166,9 @@ function update(){
 game.scale.pageAlignVertically = true;
  game.physics.arcade.collide(aliens, ground);
  game.physics.arcade.overlap(player, aliens, killPlayer, null, this);
+ game.physics.arcade.overlap(kunais, aliens, killAlien, null, this);
 game.physics.arcade.collide(player, ground);
+//game.physics.arcade.collide(aliens, kunais);
 
 
 timeSinceLastIncrement += game.time.elapsed;
@@ -177,10 +184,11 @@ console.log(timeSinceLastIncrement);
         }else{
       alien= aliens.create(game.world.width-200, game.world.height - 800, 'alien2');
         }
-      alien.name = 'alien' + game.time.elapsed;
+      alien.name = 'alien' + game.time.now;
       console.log(alien.name);
       alien.checkWorldBounds = true;
-       alien.body.checkCollision.right = false;
+
+       //alien.body.checkCollision.right = false;
 
       //alien = game.add.sprite(game.world.width-500, game.world.height - 400, 'alien1');
        alien.scale.setTo(scaleRatio, scaleRatio);
@@ -242,6 +250,24 @@ if(shootPressed  && !playerKilled){
     player.body.velocity.y = -800
    // player.body.gravity.y = 6000;
     
+   //fire
+
+   kunai= kunais.create(player.x, player.y+20, 'kunai');
+   kunai.scale.setTo(scaleRatio,scaleRatio);     
+      kunai.name = 'kunai' + game.time.now;
+      //console.log(alien.name);
+      kunai.checkWorldBounds = true;
+       game.physics.arcade.enable(kunai);
+       kunai.body.gravity.y = 300;
+       //alien.body.checkCollision.right = false;
+
+      //alien = game.add.sprite(game.world.width-500, game.world.height - 400, 'alien1');
+      // kunai.scale.setTo(scaleRatio, scaleRatio);
+      kunai.body.velocity.x = 2500;
+      kunai.events.onOutOfBounds.add(deleteKunai , this);
+
+
+
    flipFlop = true;
    shootPressed = false;
 
@@ -275,6 +301,14 @@ obj.kill();
 
 }
 
+function deleteKunai(obj) { 
+obj.kill(); 
+ obj.destroy(); 
+
+
+
+}
+
 function killPlayer (player, alien) {
     
     // Removes the star from the screen
@@ -288,6 +322,23 @@ function killPlayer (player, alien) {
  }
     //player.kill();
 
+
+}
+
+function killAlien (kunai, alien) {
+    
+    // Removes the star from the screen
+ //    if(enableObstacleCollide){
+      
+ //    playerKilled=true;
+ //   // alien.body.velocity.x=0;
+ //    player.animations.stop(null, true);
+ //     player.animations.play('dead');
+ //     enableObstacleCollide=false;
+ // }
+    
+kunai.destroy();
+alien.destroy();
 
 }
 
@@ -314,6 +365,7 @@ var enableObstacleCollide = true;
 var platforms;
 var player;
 var alien;
+var kunai;
 var score=0;
 var jumpPressed = false;
 var shootPressed=false;
