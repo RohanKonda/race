@@ -2,14 +2,14 @@ var game = new Phaser.Game(1920, 1080, Phaser.CANVAS, '', { preload: preload, cr
 
 function preload() {
 
-    game.load.image('background', 'assets/sky.png');
-    game.load.image('rocks_1', 'assets/rocks_1.png');
-    game.load.image('rocks_2', 'assets/rocks_2.png');
+    game.load.image('background', 'assets/background/1.png');
+    game.load.image('rocks_1', 'assets/background/2.png');
+    game.load.image('rocks_2', 'assets/background/3.png');
    // game.load.image('clouds_1', 'assets/clouds_1.png');
-    game.load.image('clouds_2', 'assets/clouds_2.png');
+    game.load.image('clouds_2', 'assets/background/4.png');
     //game.load.image('clouds_3', 'assets/clouds_3.png');
     //game.load.image('clouds_4', 'assets/clouds_4.png');
-    game.load.image('ground', 'assets/ground.png');
+    game.load.image('ground', 'assets/background/5_1.png');
     game.load.atlas('dude', 'assets/dude.png', 'assets/dude.json');
     game.load.atlas('alien1', 'assets/alien1.png', 'assets/alien1.json');
     game.load.atlas('alien2', 'assets/alien2.png', 'assets/alien2.json');
@@ -43,7 +43,7 @@ game.input.addPointer();
     var background = game.add.sprite(0, 0, 'background');
     //background.scale.setTo(scaleRatio, scaleRatio);
 
-    this.rocks_1 = this.game.add.tileSprite(350,
+    this.rocks_1 = this.game.add.tileSprite(0,
         this.game.height - this.game.cache.getImage('rocks_1').height,
         this.game.width,
         this.game.cache.getImage('rocks_1').height,
@@ -103,7 +103,7 @@ game.input.addPointer();
 
     //var ground = platforms.create(0, game.world.height - 64, 'ground');
       ground  = game.add.tileSprite(0,
-        game.height - game.cache.getImage('ground').height,
+        game.height - (game.height-1000),
         game.width,
         game.cache.getImage('ground').height,
         'ground'
@@ -119,7 +119,7 @@ ground.body.immovable = true;
 
      // The player and its settings
     player = game.add.sprite(102, game.world.height - 700, 'dude');
-    player.scale.setTo(scaleRatio, scaleRatio);
+    player.scale.setTo(scaleRatio/2, scaleRatio/2);
       game.physics.arcade.enable(player);
 
     //  Player physics properties. Give the little guy a slight bounce.
@@ -139,6 +139,13 @@ ground.body.immovable = true;
 //  The score
     scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
     scoreText.scale.setTo(scaleRatio/2, scaleRatio/2);
+
+    kunaiLabel = game.add.sprite(16,80,'kunai');
+    kunaiLabel.scale.setTo(scaleRatio/2,scaleRatio/2);
+
+    kunaiCountTxt = game.add.text(150, 70, kunaiCount, { fontSize: '32px', fill: '#000' });
+    kunaiCountTxt.scale.setTo(scaleRatio/2, scaleRatio/2);
+
     
     
     jump = game.add.sprite(game.width - 680, game.height - 320, 'jump');
@@ -157,6 +164,10 @@ jump.events.onInputDown.add(onJump, this);
 var flipFlop=false;
 var timeSinceLastIncrement = 0;
 var playerKilled = false;
+var kunaiCount = 50;
+var kunais;
+var aliens;
+
 
 
 
@@ -166,16 +177,20 @@ function update(){
 game.scale.pageAlignVertically = true;
  game.physics.arcade.collide(aliens, ground);
  game.physics.arcade.overlap(player, aliens, killPlayer, null, this);
- game.physics.arcade.overlap(kunais, aliens, killAlien, null, this);
+ 
+ console.log(aliens.countLiving());
+
+
+game.physics.arcade.overlap(aliens, kunais, killAlien, null, this);
 game.physics.arcade.collide(player, ground);
 //game.physics.arcade.collide(aliens, kunais);
 
 
 timeSinceLastIncrement += game.time.elapsed;
-console.log(timeSinceLastIncrement);
+//console.log(timeSinceLastIncrement);
 
 
-   if (timeSinceLastIncrement > (Math.floor(Math.random() * 1300) + 500))  // Random number between 1500 and 4000
+   if (timeSinceLastIncrement > (Math.floor(Math.random() * 2000) + 500))  // Random number between 1500 and 4000
    {
     console.log('Inside');
      timeSinceLastIncrement = 0;
@@ -185,20 +200,23 @@ console.log(timeSinceLastIncrement);
       alien= aliens.create(game.world.width-200, game.world.height - 800, 'alien2');
         }
       alien.name = 'alien' + game.time.now;
-      console.log(alien.name);
+      //console.log(aliens.length);
       alien.checkWorldBounds = true;
 
        //alien.body.checkCollision.right = false;
 
       //alien = game.add.sprite(game.world.width-500, game.world.height - 400, 'alien1');
-       alien.scale.setTo(scaleRatio, scaleRatio);
-      game.physics.arcade.enable(alien);
+       alien.scale.setTo(scaleRatio/2, scaleRatio/2);
+      game.physics.arcade.enable(aliens);
        alien.body.gravity.y = 5000;
-      alien.animations.add('alien_run', [0,1,2,3,4,5,6], 6, true);
+      alien.animations.add('alien_run', [0,1,2,3,4,5,6], 5, true);
       alien.animations.play('alien_run');
-     alien.body.velocity.x=-800;
+     alien.body.velocity.x=-700;
      alien.events.onOutOfBounds.add(goodbye, this);
-     console.log(alien.name+' '+alien.x)
+
+
+ 
+     //console.log(alien.name+' '+alien.x)
 
 }
 
@@ -230,7 +248,7 @@ if(jumpPressed && player.body.touching.down && !playerKilled){
     player.animations.stop(null, true);
     player.animations.play('jump');
     //player.body.bounce.y = 2;
-    player.body.velocity.y = -2000
+    player.body.velocity.y = -2200
     player.body.gravity.y = 6000;
     
    flipFlop = true;
@@ -240,7 +258,7 @@ if(jumpPressed && player.body.touching.down && !playerKilled){
 }
 
 
-if(shootPressed  && !playerKilled){
+if(shootPressed  && !playerKilled && kunaiCount > 0){
 
  //player.loadTexture('dude1',7);
  //if (!flipFlop) {
@@ -252,8 +270,8 @@ if(shootPressed  && !playerKilled){
     
    //fire
 
-   kunai= kunais.create(player.x, player.y+20, 'kunai');
-   kunai.scale.setTo(scaleRatio,scaleRatio);     
+   kunai= kunais.create(player.x+50, player.y+25, 'kunai');
+   kunai.scale.setTo(scaleRatio/2 ,scaleRatio/2);     
       kunai.name = 'kunai' + game.time.now;
       //console.log(alien.name);
       kunai.checkWorldBounds = true;
@@ -265,6 +283,8 @@ if(shootPressed  && !playerKilled){
       // kunai.scale.setTo(scaleRatio, scaleRatio);
       kunai.body.velocity.x = 2500;
       kunai.events.onOutOfBounds.add(deleteKunai , this);
+      kunaiCount --;
+      kunaiCountTxt.text = kunaiCount;
 
 
 
@@ -290,6 +310,7 @@ if(!player.body.touching.down && !flipFlop){
 function goodbye(obj) { 
 obj.kill(); 
  obj.destroy(); 
+
 
  console.log('alien killed');
     if(!playerKilled){
@@ -327,18 +348,12 @@ function killPlayer (player, alien) {
 
 function killAlien (kunai, alien) {
     
-    // Removes the star from the screen
- //    if(enableObstacleCollide){
-      
- //    playerKilled=true;
- //   // alien.body.velocity.x=0;
- //    player.animations.stop(null, true);
- //     player.animations.play('dead');
- //     enableObstacleCollide=false;
- // }
-    
+ 
 kunai.destroy();
 alien.destroy();
+
+   score += 20;
+    scoreText.text = 'Score: ' + score;
 
 }
 
