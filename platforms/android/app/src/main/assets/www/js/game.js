@@ -19,7 +19,7 @@ function preload() {
      game.load.image('shoot', 'assets/shoot.png');
       game.load.image('kunai', 'assets/kunai.png');
       game.load.audio('halloween', ['assets/audio/music.mp3', 'assets/audio/music.mp3']);
-      game.time.desiredFps = 30;
+      game.time.desiredFps = 25;
 
 
 
@@ -121,12 +121,12 @@ ground.body.immovable = true;
     player = game.add.sprite(102, game.world.height - 700, 'dude');
     player.scale.setTo(scaleRatio/2, scaleRatio/2);
       game.physics.arcade.enable(player);
-
+player.body.checkCollision.left = false;
     //  Player physics properties. Give the little guy a slight bounce.
    // player.body.bounce.y = 0.2;
    player.body.gravity.y = 5000;
     player.body.collideWorldBounds = true;
-    player.body.checkCollision.left = false;
+    
   //  player.body.checkCollision.right = false;
     //player.loadTexture('dude1',7);
      player.animations.add('dead', [0,1,2,3,4,5,6,7,8,9], 10, false);
@@ -141,7 +141,7 @@ ground.body.immovable = true;
     scoreText.scale.setTo(scaleRatio/2, scaleRatio/2);
 
     kunaiLabel = game.add.sprite(16,80,'kunai');
-    kunaiLabel.scale.setTo(scaleRatio/2,scaleRatio/2);
+    kunaiLabel.scale.setTo(scaleRatio,scaleRatio);
 
     kunaiCountTxt = game.add.text(150, 70, kunaiCount, { fontSize: '32px', fill: '#000' });
     kunaiCountTxt.scale.setTo(scaleRatio/2, scaleRatio/2);
@@ -203,7 +203,7 @@ timeSinceLastIncrement += game.time.elapsed;
       //console.log(aliens.length);
       alien.checkWorldBounds = true;
 
-       //alien.body.checkCollision.right = false;
+       alien.body.checkCollision.right = false;
 
       //alien = game.add.sprite(game.world.width-500, game.world.height - 400, 'alien1');
        alien.scale.setTo(scaleRatio/2, scaleRatio/2);
@@ -332,14 +332,18 @@ obj.kill();
 
 function killPlayer (player, alien) {
     
+
+    console.log('overlapx' + alien.body.overlapX);
+
     // Removes the star from the screen
     if(enableObstacleCollide){
-      
+      if(alien.body.overlapX < 110){
     playerKilled=true;
    // alien.body.velocity.x=0;
     player.animations.stop(null, true);
      player.animations.play('dead');
      enableObstacleCollide=false;
+ }
  }
     //player.kill();
 
