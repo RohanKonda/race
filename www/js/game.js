@@ -270,7 +270,7 @@ if(shootPressed  && !playerKilled && kunaiCount > 0){
     
    //fire
 
-   kunai= kunais.create(player.x+50, player.y+25, 'kunai');
+   kunai= kunais.create(player.x+50, player.y+50, 'kunai');
    kunai.scale.setTo(scaleRatio/2 ,scaleRatio/2);     
       kunai.name = 'kunai' + game.time.now;
       //console.log(alien.name);
