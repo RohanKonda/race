@@ -19,7 +19,7 @@ function preload() {
      game.load.image('shoot', 'assets/shoot.png');
       game.load.image('kunai', 'assets/kunai.png');
       game.load.audio('halloween', ['assets/audio/music.mp3', 'assets/audio/music.mp3']);
-      game.time.desiredFps = 25;
+      game.time.desiredFps = 30;
 
 
 
@@ -27,9 +27,9 @@ function preload() {
 var music;
 function create() {
 
-    music = game.add.audio('halloween');
+   // music = game.add.audio('halloween');
 
-    music.play();
+   // music.play();
 
 	scaleRatio = window.devicePixelRatio;
     //alert(window.devicePixelRatio);
@@ -190,15 +190,15 @@ timeSinceLastIncrement += game.time.elapsed;
 //console.log(timeSinceLastIncrement);
 
 
-   if (timeSinceLastIncrement > (Math.floor(Math.random() * 2000) + 500))  // Random number between 1500 and 4000
+   if (timeSinceLastIncrement > (Math.floor(Math.random() * 4000) + 1000))  // Random number between 1500 and 4000
    {
     console.log('Inside');
      timeSinceLastIncrement = 0;
-     if((Math.floor(Math.random() * 10) + 1)% 2 == 0){
+     //if((Math.floor(Math.random() * 10) + 1)% 2 == 0){
       alien= aliens.create(game.world.width-200, game.world.height - 800, 'alien1');
-        }else{
-      alien= aliens.create(game.world.width-200, game.world.height - 800, 'alien2');
-        }
+      //   }else{
+      // alien= aliens.create(game.world.width-200, game.world.height - 800, 'alien2');
+      //   }
       alien.name = 'alien' + game.time.now;
       //console.log(aliens.length);
       alien.checkWorldBounds = true;
@@ -209,7 +209,7 @@ timeSinceLastIncrement += game.time.elapsed;
        alien.scale.setTo(scaleRatio/2, scaleRatio/2);
       game.physics.arcade.enable(aliens);
        alien.body.gravity.y = 5000;
-      alien.animations.add('alien_run', [0,1,2,3,4,5,6], 5, true);
+      alien.animations.add('alien_run', [0,1,2,3,4,5], 5, true);
       alien.animations.play('alien_run');
      alien.body.velocity.x=-700;
      alien.events.onOutOfBounds.add(goodbye, this);
@@ -270,7 +270,7 @@ if(shootPressed  && !playerKilled && kunaiCount > 0){
     
    //fire
 
-   kunai= kunais.create(player.x+50, player.y+25, 'kunai');
+   kunai= kunais.create(player.x+50, player.y+50, 'kunai');
    kunai.scale.setTo(scaleRatio/2 ,scaleRatio/2);     
       kunai.name = 'kunai' + game.time.now;
       //console.log(alien.name);
@@ -337,7 +337,7 @@ function killPlayer (player, alien) {
 
     // Removes the star from the screen
     if(enableObstacleCollide){
-      if(alien.body.overlapX < 110){
+      if(alien.body.overlapX < 110){ // Check exactly where the alien is touched, if its touched at the back, dont kill the player.
     playerKilled=true;
    // alien.body.velocity.x=0;
     player.animations.stop(null, true);
@@ -350,16 +350,28 @@ function killPlayer (player, alien) {
 
 }
 
-function killAlien (kunai, alien) {
+function killAlien (alien, kunai) {
     
  
 kunai.destroy();
-alien.destroy();
+//
 
+ alien.animations.add('alien_dead', [7,8,9,10,11,12], 15, false);
+      alien_dead_anim = alien.animations.play('alien_dead');
+      alien_dead_anim.onComplete.add(destroyAlien, this)
+alien.body.velocity.x=0;
    score += 20;
     scoreText.text = 'Score: ' + score;
+    //alien.destroy();
 
 }
+
+function destroyAlien(alien){
+
+alien.destroy();
+}
+
+
 
 function destroySprite (sprite) {
 

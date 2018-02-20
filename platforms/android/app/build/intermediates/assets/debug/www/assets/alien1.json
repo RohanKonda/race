@@ -2,7 +2,7 @@
 
 {
 	"filename": "predatormask__0012_run_1.png",
-	"frame": {"x":1,"y":101,"w":56,"h":100},
+	"frame": {"x":1,"y":376,"w":56,"h":100},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":56,"h":100},
@@ -10,7 +10,7 @@
 },
 {
 	"filename": "predatormask__0013_run_2.png",
-	"frame": {"x":63,"y":1,"w":56,"h":101},
+	"frame": {"x":63,"y":175,"w":56,"h":101},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":56,"h":101},
@@ -18,7 +18,7 @@
 },
 {
 	"filename": "predatormask__0014_run_3.png",
-	"frame": {"x":121,"y":102,"w":58,"h":97},
+	"frame": {"x":62,"y":278,"w":58,"h":97},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":58,"h":97},
@@ -26,7 +26,7 @@
 },
 {
 	"filename": "predatormask__0015_run_4.png",
-	"frame": {"x":121,"y":1,"w":59,"h":99},
+	"frame": {"x":1,"y":275,"w":59,"h":99},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":59,"h":99},
@@ -34,7 +34,7 @@
 },
 {
 	"filename": "predatormask__0016_run_5.png",
-	"frame": {"x":1,"y":1,"w":60,"h":98},
+	"frame": {"x":1,"y":175,"w":60,"h":98},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":98},
@@ -42,19 +42,59 @@
 },
 {
 	"filename": "predatormask__0017_run_6.png",
-	"frame": {"x":59,"y":104,"w":60,"h":97},
+	"frame": {"x":59,"y":377,"w":60,"h":97},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":97},
 	"sourceSize": {"w":60,"h":97}
+},
+{
+	"filename": "predatormask__0022_dead_1.png",
+	"frame": {"x":1,"y":1,"w":85,"h":90},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":85,"h":90},
+	"sourceSize": {"w":85,"h":90}
+},
+{
+	"filename": "predatormask__0023_dead_2.png",
+	"frame": {"x":1,"y":93,"w":95,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":95,"h":80},
+	"sourceSize": {"w":95,"h":80}
+},
+{
+	"filename": "predatormask__0024_dead_3.png",
+	"frame": {"x":1,"y":478,"w":89,"h":64},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":89,"h":64},
+	"sourceSize": {"w":89,"h":64}
+},
+{
+	"filename": "predatormask__0025_dead_4.png",
+	"frame": {"x":1,"y":606,"w":94,"h":58},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":94,"h":58},
+	"sourceSize": {"w":94,"h":58}
+},
+{
+	"filename": "predatormask__0026_dead_5.png",
+	"frame": {"x":1,"y":544,"w":93,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":93,"h":60},
+	"sourceSize": {"w":93,"h":60}
 }],
 "meta": {
 	"app": "http://www.codeandweb.com/texturepacker",
 	"version": "1.0",
 	"image": "alien1.png",
 	"format": "RGBA8888",
-	"size": {"w":181,"h":202},
+	"size": {"w":121,"h":665},
 	"scale": "0.25",
-	"smartupdate": "$TexturePacker:SmartUpdate:a2510cddb14980363ec8536e07a9e4eb:2ba21b7abcedf76b97abae742246b942:8df27f3a0b4d9be53b61550309ef0202$"
+	"smartupdate": "$TexturePacker:SmartUpdate:b8d9b717f3870653520f5248b67f4079:1bdee0031d8375f1a853a519b9507641:8df27f3a0b4d9be53b61550309ef0202$"
 }
 }
