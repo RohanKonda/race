@@ -2,14 +2,15 @@ var game = new Phaser.Game(1920, 1080, Phaser.CANVAS, '', { preload: preload, cr
 
 function preload() {
 
-    game.load.image('background', 'assets/background/1.png');
-    game.load.image('rocks_1', 'assets/background/2.png');
-    game.load.image('rocks_2', 'assets/background/3.png');
-   // game.load.image('clouds_1', 'assets/clouds_1.png');
-    game.load.image('clouds_2', 'assets/background/4.png');
-    //game.load.image('clouds_3', 'assets/clouds_3.png');
-    //game.load.image('clouds_4', 'assets/clouds_4.png');
-    game.load.image('ground', 'assets/background/5_1.png');
+    game.load.image('sky', 'assets/background/sky.png');
+    game.load.image('sun', 'assets/background/sun.png');
+    game.load.image('back_land', 'assets/background/back_land.png');
+    game.load.image('back_land_2', 'assets/background/back_land_2.png');
+    game.load.image('cloud', 'assets/background/cloud.png');
+    //game.load.image('clouds_2', 'assets/background/clouds_2.png');
+    game.load.image('decor', 'assets/background/decor.png');
+    game.load.image('land', 'assets/background/land.png');
+    game.load.image('ground', 'assets/background/ground.png');
     game.load.atlas('dude', 'assets/dude.png', 'assets/dude.json');
     game.load.atlas('alien1', 'assets/alien1.png', 'assets/alien1.json');
     game.load.atlas('alien2', 'assets/alien2.png', 'assets/alien2.json');
@@ -40,39 +41,52 @@ game.input.addPointer();
     game.physics.startSystem(Phaser.Physics.ARCADE);
    //game.physics.arcade.gravity.y = 300;
     //  A simple background for our game
-    var background = game.add.sprite(0, 0, 'background');
+    var background = game.add.sprite(0, 0, 'sky');
+     var sun = game.add.sprite(0, 0, 'sun');
     //background.scale.setTo(scaleRatio, scaleRatio);
 
-    this.rocks_1 = this.game.add.tileSprite(0,
-        this.game.height - this.game.cache.getImage('rocks_1').height,
+    this.back_land = this.game.add.tileSprite(0,
+        this.game.height - this.game.cache.getImage('back_land').height,
         this.game.width,
-        this.game.cache.getImage('rocks_1').height,
-        'rocks_1'
+        this.game.cache.getImage('back_land').height,
+        'back_land'
     );
  
-    this.rocks_2 = this.game.add.tileSprite(0,
-        this.game.height - this.game.cache.getImage('rocks_2').height,
+    this.back_land_2 = this.game.add.tileSprite(0,
+        this.game.height - this.game.cache.getImage('back_land_2').height,
         this.game.width,
-        this.game.cache.getImage('rocks_2').height,
-        'rocks_2'
+        this.game.cache.getImage('back_land_2').height,
+        'back_land_2'
     );
  
-    this.clouds_1 = this.game.add.tileSprite(0,
-        this.game.height - this.game.cache.getImage('clouds_1').height,
+    this.cloud = this.game.add.tileSprite(0,
+        this.game.height - this.game.cache.getImage('cloud').height,
         this.game.width,
-        this.game.cache.getImage('clouds_1').height,
-        'clouds_1'
+        this.game.cache.getImage('cloud').height,
+        'cloud'
     );   
 
-     this.clouds_2 = this.game.add.tileSprite(0,
-        this.game.height - this.game.cache.getImage('clouds_2').height,
+    //  this.clouds_2 = this.game.add.tileSprite(0,
+    //     this.game.height - this.game.cache.getImage('clouds_2').height,
+    //     this.game.width,
+    //     this.game.cache.getImage('clouds_2').height,
+    //     'clouds_2'
+    // ); 
+
+       this.decor = this.game.add.tileSprite(0,
+        this.game.height - this.game.cache.getImage('decor').height,
         this.game.width,
-        this.game.cache.getImage('clouds_2').height,
-        'clouds_2'
+        this.game.cache.getImage('decor').height,
+        'decor'
     ); 
 
+          this.land = this.game.add.tileSprite(0,
+        this.game.height - this.game.cache.getImage('land').height,
+        this.game.width,
+        this.game.cache.getImage('land').height,
+        'land'
+    ); 
 
-   
 
 
 //  The platforms group contains the ground and the 2 ledges we can jump on
@@ -103,7 +117,7 @@ game.input.addPointer();
 
     //var ground = platforms.create(0, game.world.height - 64, 'ground');
       ground  = game.add.tileSprite(0,
-        game.height - (game.height-1000),
+        game.height - (game.height-840),
         game.width,
         game.cache.getImage('ground').height,
         'ground'
@@ -194,11 +208,11 @@ timeSinceLastIncrement += game.time.elapsed;
    {
     console.log('Inside');
      timeSinceLastIncrement = 0;
-     //if((Math.floor(Math.random() * 10) + 1)% 2 == 0){
+     if((Math.floor(Math.random() * 10) + 1)% 2 == 0){
       alien= aliens.create(game.world.width-200, game.world.height - 800, 'alien1');
-      //   }else{
-      // alien= aliens.create(game.world.width-200, game.world.height - 800, 'alien2');
-      //   }
+         }else{
+       alien= aliens.create(game.world.width-200, game.world.height - 800, 'alien2');
+         }
       alien.name = 'alien' + game.time.now;
       //console.log(aliens.length);
       alien.checkWorldBounds = true;
@@ -209,7 +223,7 @@ timeSinceLastIncrement += game.time.elapsed;
        alien.scale.setTo(scaleRatio/2, scaleRatio/2);
       game.physics.arcade.enable(aliens);
        alien.body.gravity.y = 5000;
-      alien.animations.add('alien_run', [0,1,2,3,4,5], 5, true);
+      alien.animations.add('alien_run', [7,8,9,10,11,12,13], 5, true);
       alien.animations.play('alien_run');
      alien.body.velocity.x=-700;
      alien.events.onOutOfBounds.add(goodbye, this);
@@ -223,10 +237,12 @@ timeSinceLastIncrement += game.time.elapsed;
 
 
 
-    this.rocks_1.tilePosition.x -= 0.05;
-    this.rocks_2.tilePosition.x -= 1;
-    this.clouds_1.tilePosition.x -= 0.75; 
-    this.clouds_2.tilePosition.x -= 0.55; 
+    this.back_land.tilePosition.x -= 0.05;
+    this.back_land_2.tilePosition.x -= 1;
+    this.cloud.tilePosition.x -= 0.75; 
+   // this.clouds_2.tilePosition.x -= 0.55; 
+    this.decor.tilePosition.x -= 1.3; 
+    this.land.tilePosition.x -= 15; 
     ground.tilePosition.x -= 15; 
      
      //player.animations.play('idle');
@@ -355,8 +371,8 @@ function killAlien (alien, kunai) {
  
 kunai.destroy();
 //
-
- alien.animations.add('alien_dead', [7,8,9,10,11,12], 15, false);
+player.animations.stop(null, true);
+ alien.animations.add('alien_dead', [0,1,2,3,4,5,6], 15, false);
       alien_dead_anim = alien.animations.play('alien_dead');
       alien_dead_anim.onComplete.add(destroyAlien, this)
 alien.body.velocity.x=0;
