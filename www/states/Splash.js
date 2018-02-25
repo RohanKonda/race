@@ -15,8 +15,13 @@ Splash.prototype = {
 
   loadBgm: function () {
     // thanks Kevin Macleod at http://incompetech.com/
-    game.load.audio('dangerous', 'assets/bgm/Dangerous.mp3');
+    game.load.audio('gameMusic', 'assets/bgm/game.mp3');
     game.load.audio('exit', 'assets/bgm/Exit the Premises.mp3');
+    game.load.audio('killAlienSound','assets/bgm/pain.mp3');
+    game.load.audio('shootKunai','assets/bgm/kunai.mp3');
+    game.load.audio('playerJump','assets/bgm/jump.mp3');
+    game.load.audio('monsterCry','assets/bgm/monster.mp3');
+    game.load.audio('playerPain','assets/bgm/player_pain.mp3');
   },
   // varios freebies found from google image search
   loadImages: function () {
@@ -42,6 +47,7 @@ Splash.prototype = {
      game.load.image('jump', 'assets/jump.png');
      game.load.image('shoot', 'assets/shoot.png');
       game.load.image('kunai', 'assets/kunai.png');
+      game.load.image('ninja', 'assets/ninja.png');
 
 
 
@@ -90,9 +96,15 @@ Splash.prototype = {
   },
 
   addGameMusic: function () {
-    music = game.add.audio('dangerous');
-    music.loop = true;
-    music.play();
+    gameMusic = game.add.audio('gameMusic');
+   // music.loop = true;
+   // music.play();
+
+   killAlienSound = game.add.audio('killAlienSound');
+   shootKunaiSound = game.add.audio('shootKunai');
+   playerJumpSound =game.add.audio('playerJump');
+   monsterCry =game.add.audio('monsterCry');
+   playerPainSound = game.add.audio('playerPain');
   },
 
   create: function() {

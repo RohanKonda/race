@@ -1,9 +1,5 @@
 [
     {
-        "merged": "C:\\xampp\\htdocs\\race\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_icon.png.flat",
-        "source": "C:\\xampp\\htdocs\\race\\platforms\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\icon.png"
-    },
-    {
         "merged": "C:\\xampp\\htdocs\\race\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-port-xhdpi_screen.png.flat",
         "source": "C:\\xampp\\htdocs\\race\\platforms\\android\\app\\src\\main\\res\\drawable-port-xhdpi\\screen.png"
     },
@@ -70,9 +66,5 @@
     {
         "merged": "C:\\xampp\\htdocs\\race\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-land-xhdpi_screen.png.flat",
         "source": "C:\\xampp\\htdocs\\race\\platforms\\android\\app\\src\\main\\res\\drawable-land-xhdpi\\screen.png"
-    },
-    {
-        "merged": "C:\\xampp\\htdocs\\race\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_icon.png.flat",
-        "source": "C:\\xampp\\htdocs\\race\\platforms\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\icon.png"
     }
 ]

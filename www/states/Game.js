@@ -6,7 +6,7 @@ Game.prototype = {
         this.optionCount = 1;
 
 //game.time.desiredFps = 30;
-    
+
       
       var music;
       this.enableObstacleCollide = true;
@@ -30,6 +30,8 @@ this.getTimeElapsed;
 this.startTime = 0;
 this.currentTime = 0;
 this.playerLives = 3;
+
+
 
 
   },
@@ -68,7 +70,8 @@ this.playerLives = 3;
     // this.addMenuOption('Next ->', function (e) {
     //   this.game.state.start("GameOver");
     // });
-
+ gameMusic.loop = true;
+    gameMusic.play();
 
 //scaleRatio = window.devicePixelRatio;
     //alert(window.devicePixelRatio);
@@ -176,10 +179,12 @@ player.body.checkCollision.left = false;
     scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '16px', fill: '#000' });
     //scoreText.scale.setTo(scaleRatio/2, scaleRatio/2);
 
-    kunaiLabel = game.add.sprite(16,80,'kunai');
+    kunaiLabel = game.add.sprite(16,50,'kunai');
+    playerLabel = game.add.sprite(game.width-100,16,'ninja');
+    playerLivesTxt = game.add.text(game.width-50, 16, this.playerLives, { fontSize: '32px', fill: '#000' });
     //kunaiLabel.scale.setTo(scaleRatio,scaleRatio);
 
-    kunaiCountTxt = game.add.text(60, 70, this.kunaiCount, { fontSize: '16px', fill: '#000' });
+    kunaiCountTxt = game.add.text(60, 40, this.kunaiCount, { fontSize: '16px', fill: '#000' });
     //kunaiCountTxt.scale.setTo(scaleRatio/2, scaleRatio/2);
 
     
@@ -230,10 +235,10 @@ this.timeSinceLastIncrement = this.currentTime - this.startTime;
 randomNum = Math.floor(Math.random()*(4000-1000+1)+1000);
    if (this.timeSinceLastIncrement > randomNum)  // Random number between 1500 and 4000
    {
-    console.log(this.timeSinceLastIncrement)
+    console.log('TSI: '+this.timeSinceLastIncrement)
    // console.log('Random: '+randomNum);
    this.startTime = this.currentTime;
-     this.timeSinceLastIncrement = 0;
+     //this.timeSinceLastIncrement = 0;
      if((Math.floor(Math.random() * 10) + 1)% 2 == 0){
       alien = this.aliens.getFirstDead();
       if(alien===null || alien===undefined){
@@ -265,13 +270,15 @@ randomNum = Math.floor(Math.random()*(4000-1000+1)+1000);
        alien.body.gravity.y = 5000;
       alien.animations.add('alien_run', [14,15,16,17,18,19,20], 5, true);
       alien.animations.play('alien_run');
-      if(this.timeSinceLastIncrement >2500){
-     alien.body.velocity.x=-500;
+      if(this.timeSinceLastIncrement >1600){
+     alien.body.velocity.x=-600;
+       monsterCry.play();
    }else{
     alien.body.velocity.x=-400;
+  
    }
      alien.events.onOutOfBounds.add(this.goodbye, this);
-
+this.timeSinceLastIncrement = 0;
 
  
      //console.log(alien.name+' '+alien.x)
@@ -316,6 +323,7 @@ if(this.jumpPressed && player.body.touching.down && !this.playerKilled){
  //player.loadTexture('dude1',7);
  //if (!flipFlop) {
     player.animations.stop(null, true);
+    playerJumpSound.play();
     player.animations.play('jump');
     //player.body.bounce.y = 2;
     player.body.velocity.y = -2000
@@ -348,6 +356,7 @@ if(this.shootPressed  && !this.playerKilled ){
       kunai.checkWorldBounds = true;
        game.physics.arcade.enable(kunai);
        kunai.body.gravity.y = 300;
+       shootKunaiSound.play();
        //alien.body.checkCollision.right = false;
 
       //alien = game.add.sprite(game.world.width-500, game.world.height - 400, 'alien1');
@@ -361,7 +370,7 @@ if(this.shootPressed  && !this.playerKilled ){
 
           if(this.timeSinceEmptyBullets==0){
           this.timeSinceEmptyBullets  = game.time.now;
-          console.log(this.timeSinceEmptyBullets);
+          //console.log(this.timeSinceEmptyBullets);
 
         }
 
@@ -370,7 +379,7 @@ if(this.shootPressed  && !this.playerKilled ){
 
       }
 
-console.log('empty: '+this.timeSinceEmptyBullets);
+//console.log('empty: '+this.timeSinceEmptyBullets);
 
     
       kunaiCountTxt.text = this.kunaiCount;
@@ -436,6 +445,7 @@ alien.animations.stop(null, true);
  alien.animations.add('alien_attack', [0,1,2,3,4,5,6], 10, false);
 alien.animations.play('alien_attack');
     player.animations.stop(null, true);
+    playerPainSound.play();
      player_dead_anim = player.animations.play('dead');
 
      if(this.playerLives>0){
@@ -462,6 +472,7 @@ kunai.destroy();
 alien.animations.stop(null, true);
  alien.animations.add('alien_dead', [7,8,9,10,11,12,13], 15, false);
       alien_dead_anim = alien.animations.play('alien_dead');
+      killAlienSound.play();
       alien_dead_anim.onComplete.add(this.destroyAlien, this)
 alien.body.velocity.x=0;
    this.score += 20;
@@ -507,6 +518,7 @@ resurectPlayer: function(player){
    
      this.playerKilled=false;
      this.playerLives--;
+     playerLivesTxt.text = this.playerLives;
     player_res_anim = player.animations.play('right');
     player_res_anim.onLoop.add(this.reEnablePlayerCollide,this);
      
