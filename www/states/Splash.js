@@ -42,6 +42,8 @@ Splash.prototype = {
     game.load.atlas('dude', 'assets/dude.png', 'assets/dude.json');
     game.load.atlas('alien1', 'assets/alien1.png', 'assets/alien1.json');
     game.load.atlas('alien2', 'assets/alien2.png', 'assets/alien2.json');
+    game.load.image('pause', 'assets/pause.png');
+    game.load.image('resume', 'assets/resume.png');
     //game.load.spritesheet('dude', 'assets/dude.png',89,60);
     //game.load.spritesheet('dude1', 'assets/dude.png',85,51);
      game.load.image('jump', 'assets/jump.png');

@@ -14,13 +14,15 @@ Credits.prototype = {
     var authorText = game.add.text(game.world.centerX, 900, author, authorStyle);
     var taskText = game.add.text(game.world.centerX, 950, task, taskStyle);
     authorText.anchor.setTo(0.5);
+    authorText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     authorText.stroke = "rgba(0,0,0,0)";
     authorText.strokeThickness = 4;
     taskText.anchor.setTo(0.5);
+    taskText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     taskText.stroke = "rgba(0,0,0,0)";
     taskText.strokeThickness = 4;
-    game.add.tween(authorText).to( { y: -300 }, 20000, Phaser.Easing.Cubic.Out, true, this.creditCount * 10000);
-    game.add.tween(taskText).to( { y: -200 }, 20000, Phaser.Easing.Cubic.Out, true, this.creditCount * 10000);
+    game.add.tween(authorText).to( { y: -300 }, 7000, Phaser.Easing.Cubic.Out, true, this.creditCount * 2000);
+    game.add.tween(taskText).to( { y: -200 }, 7000, Phaser.Easing.Cubic.Out, true, this.creditCount * 2000);
     this.creditCount ++;
   },
 
@@ -30,9 +32,11 @@ Credits.prototype = {
 
     txt.stroke = "rgba(0,0,0,0";
     txt.strokeThickness = 4;
+    txt.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     var onOver = function (target) {
-      target.fill = "#FEFFD5";
+      target.fill = "#581845";
       target.stroke = "rgba(200,200,200,0.5)";
+
       txt.useHandCursor = true;
     };
     var onOut = function (target) {
@@ -57,12 +61,10 @@ Credits.prototype = {
       musicPlayer.play();
     }
     var bg = game.add.sprite(0, 0, 'gameover-bg');
-    this.addCredit('Music', 'Kevin Macleod');
-    this.addCredit('Developer', 'Matt McFarland');
-    this.addCredit('Lorem Ipsum', 'Mipsem Dempsum');
-    this.addCredit('Caveats', 'Keyboard Cat');
-    this.addCredit('Phaser.io', 'Powered By');
-    this.addCredit('for playing', 'Thank you');
+    this.addCredit('Music', 'freesound.org');
+    this.addCredit('Game design and development', 'Rohan Prashanth');
+    this.addCredit('Ninja Design', 'gameart2d.com');
+    this.addCredit('Thank you', 'Rate us on Play Store');  
     this.addMenuOption('<- Back', function (e) {
       game.state.start("GameMenu");
     });

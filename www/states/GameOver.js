@@ -12,10 +12,11 @@ GameOver.prototype = {
     var optionStyle = { font: '30pt TheMinion', fill: 'white', align: 'left', stroke: 'rgba(0,0,0,0)', srokeThickness: 4};
     var txt = game.add.text(game.world.centerX, (this.optionCount * 80) + 300, text, optionStyle);
     txt.anchor.setTo(0.5);
-    txt.stroke = "rgba(0,0,0,0";
+    txt.stroke = "rgba(0,0,0,0)";
+    txt.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     txt.strokeThickness = 4;
     var onOver = function (target) {
-      target.fill = "#FEFFD5";
+      target.fill = "#581845";
       target.stroke = "rgba(200,200,200,0.5)";
       txt.useHandCursor = true;
     };
@@ -38,7 +39,7 @@ GameOver.prototype = {
   create: function () {
       gameMusic.stop();
     game.add.sprite(0, 0, 'gameover-bg');
-    var titleStyle = { font: 'bold 60pt TheMinion', fill: '#FDFFB5', align: 'center'};
+    var titleStyle = { font: 'bold 60pt TheMinion', fill: '#581845', align: 'center'};
     var text = game.add.text(game.world.centerX, 100, "Game Over", titleStyle);
     text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     text.anchor.set(0.5);

@@ -181,6 +181,14 @@ player.body.checkCollision.left = false;
 
     kunaiLabel = game.add.sprite(16,50,'kunai');
     playerLabel = game.add.sprite(game.width-100,16,'ninja');
+     pauseButton = game.add.sprite(game.width-150,16,'pause');
+
+      pauseButton.inputEnabled = true;
+    //shoot.scale.setTo(scaleRatio, scaleRatio);
+      
+pauseButton.events.onInputDown.add(this.onPause, this);
+
+
     playerLivesTxt = game.add.text(game.width-50, 16, this.playerLives, { fontSize: '32px', fill: '#000' });
     //kunaiLabel.scale.setTo(scaleRatio,scaleRatio);
 
@@ -526,6 +534,21 @@ resurectPlayer: function(player){
 
 reEnablePlayerCollide: function(player){
   this.enableObstacleCollide=true;
+},
+
+onPause: function(pauseButton){
+
+ if(game.paused === true){
+    game.paused = false;
+    pauseButton.loadTexture('pause',0,false);
+  }else{
+
+  game.paused = true;
+  pauseButton.loadTexture('resume',0,false);
+  
+}
+
+
 }
 
 
