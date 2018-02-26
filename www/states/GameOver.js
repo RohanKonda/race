@@ -1,10 +1,14 @@
 var GameOver = function(game) {};
 
+
+
+
+
 GameOver.prototype = {
 
   preload: function () {
     this.optionCount = 1;
-      
+
 
   },
 
@@ -49,5 +53,17 @@ GameOver.prototype = {
     this.addMenuOption('Main Menu', function (e) {
       this.game.state.start("GameMenu");
     })
+
+
+
+
+
+
+// show the interstitial later, e.g. at end of game level
+if(AdMob){
+
+  AdMob.showInterstitial();
+}
+
   }
 };

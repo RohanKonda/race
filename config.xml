@@ -30,5 +30,6 @@
     <preference name="Fullscreen" value="true" />
     <preference name="Orientation" value="landscape" />
     <plugin name="cordova-plugin-device-orientation" spec="^1.0.7" />
+    <plugin name="cordova-plugin-admobpro" spec="^2.31.1" />
     <engine name="android" spec="^7.0.0" />
 </widget>

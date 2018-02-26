@@ -65,7 +65,7 @@ Splash.prototype = {
   },
 
   init: function () {
-    this.loadingBar = game.make.sprite(30, 30, "loading");
+    this.loadingBar = game.make.sprite(game.world.centerX - 30, 300, "loading");
     this.logo       = game.make.sprite(game.world.centerX, 200, 'brand');
     this.status     = game.make.text(game.world.centerX, 380, 'Loading...', {fill: 'white'});
     utils.centerGameObjects([this.logo, this.status]);
@@ -84,7 +84,7 @@ Splash.prototype = {
     this.loadImages();
     this.loadFonts();
     this.loadBgm();
-    game.time.desiredFps = 30;
+    //game.time.desiredFps = 30;
 
   },
 
@@ -107,6 +107,25 @@ Splash.prototype = {
    playerJumpSound =game.add.audio('playerJump');
    monsterCry =game.add.audio('monsterCry');
    playerPainSound = game.add.audio('playerPain');
+
+   //Load Admob
+
+   admobid = {//  for Android
+      banner: 'ca-app-pub-9764632418268157/1042215986',
+      interstitial: 'ca-app-pub-9764632418268157/2825715729',
+      rewardvideo: 'ca-app-pub-3940256099942544/5224354917'
+    };
+
+    AdMob.createBanner({adId:admobid.banner,position:AdMob.AD_POSITION.BOTTOM_CENTE,autoShow:true});
+    AdMob.hideBanner()
+
+      AdMob.prepareInterstitial({
+        adId:admobid.interstitial,
+        autoShow: false,
+      });
+
+
+
   },
 
   create: function() {

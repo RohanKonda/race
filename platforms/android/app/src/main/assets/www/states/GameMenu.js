@@ -9,6 +9,10 @@ GameMenu.prototype = {
   },
 
   init: function () {
+
+            //preppare and load ad resource in background, e.g. at begining of game level
+        
+
     this.titleText = game.make.text(game.world.centerX, 100, "Ninja Run", {
       font: 'bold 60pt TheMinion',
       fill: '#581845',
@@ -69,6 +73,9 @@ GameMenu.prototype = {
     this.addMenuOption('Credits', function () {
       game.state.start("Credits");
     });
+
+
+
   }
 };
 

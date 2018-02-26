@@ -208,6 +208,23 @@ pauseButton.events.onInputDown.add(this.onPause, this);
 jump.events.onInputDown.add(this.onJump, this);
   shoot.events.onInputDown.add(this.onShoot, this);
 
+
+
+// admobid = {//  for Android
+//       banner: 'ca-app-pub-9764632418268157/1042215986',
+//       interstitial: 'ca-app-pub-9764632418268157/2825715729',
+//       rewardvideo: 'ca-app-pub-3940256099942544/5224354917'
+//     };
+
+
+
+// show the interstitial later, e.g. at end of game level
+
+
+  AdMob.showBanner();
+
+
+
   },
 
 
