@@ -15,6 +15,10 @@
     },
     "cordova-plugin-admobpro": {
       "PACKAGE_NAME": "com.kep.ninjarun.NinjaRun"
+    },
+    "cc.fovea.cordova.purchase": {
+      "BILLING_KEY": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAojSxFccSFmw9oLOn6rsP4qQJwSeKFpexFPcS7OCi1GJ3AGKrkSevQcbijzC5VTmv4oobuED9qRNw+urpTC2ThL5fRZLDbFpCfScr1y1/BsW/tbbuCCXrHwhx+Ky/29/ceNMrqyCecDLeN4vbZQXU+wvjPDxVkmE1LDr1ChVujHohVsr7FwFDmlRrPz+fzLbRW06SHFiGSHNehT1XaCxNIMjJrHLflPnvOqKqmkPLhs/g1JcUsdT96vKE4/I3Gx9pW1HUx2CknrWVKIV5ZwVFXMFZ179/wDdcyBBSA/AXDkYMRGf18mSIXKVxdBLRX1N9xl9WlCd5W7PFpU+SdDe8KQIDAQAB",
+      "PACKAGE_NAME": "com.kep.ninjarun.NinjaRun"
     }
   },
   "dependent_plugins": {

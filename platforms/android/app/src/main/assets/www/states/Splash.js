@@ -65,7 +65,7 @@ Splash.prototype = {
   },
 
   init: function () {
-    this.loadingBar = game.make.sprite(game.world.centerX, 250, "loading");
+    this.loadingBar = game.make.sprite(game.world.centerX - 200, 400, "loading");
     this.logo       = game.make.sprite(game.world.centerX, 200, 'brand');
     this.status     = game.make.text(game.world.centerX, 380, 'Loading...', {fill: 'white'});
     utils.centerGameObjects([this.logo, this.status]);
@@ -124,7 +124,10 @@ Splash.prototype = {
         autoShow: false,
       });
 
-
+         if (window.store) {
+        console.log('Store not available');
+       
+    }
 
   },
 

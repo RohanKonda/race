@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml:2:1-18:12
-INJECTED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml:2:1-18:12
-INJECTED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml:2:1-18:12
-INJECTED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml:2:1-18:12
+ADDED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
 MERGED from [com.google.android.gms:play-services-ads:11.8.0] C:\Users\Rohan\.gradle\caches\transforms-1\files-1.1\play-services-ads-11.8.0.aar\a088293fd61c20eea2308a1a4b14f3f3\AndroidManifest.xml:17:1-25:12
 MERGED from [:CordovaLib] C:\xampp\htdocs\race\platforms\android\CordovaLib\build\intermediates\manifests\full\debug\AndroidManifest.xml:20:1-27:12
 MERGED from [com.google.android.gms:play-services-ads-lite:11.8.0] C:\Users\Rohan\.gradle\caches\transforms-1\files-1.1\play-services-ads-lite-11.8.0.aar\c07d8edf2acbb43ea3ed4fb543efa4b3\AndroidManifest.xml:17:1-36:12
@@ -19,9 +19,9 @@ MERGED from [com.android.support:support-media-compat:25.2.0] C:\Users\Rohan\.gr
 MERGED from [com.android.support:support-core-utils:25.2.0] C:\Users\Rohan\.gradle\caches\transforms-1\files-1.1\support-core-utils-25.2.0.aar\1a6675fdc1ad46f788db46694178bdd3\AndroidManifest.xml:17:1-27:12
 MERGED from [com.android.support:support-core-ui:25.2.0] C:\Users\Rohan\.gradle\caches\transforms-1\files-1.1\support-core-ui-25.2.0.aar\3a93eeb80fadae80bd0a8db5111f34fc\AndroidManifest.xml:17:1-27:12
 MERGED from [com.android.support:support-compat:25.2.0] C:\Users\Rohan\.gradle\caches\transforms-1\files-1.1\support-compat-25.2.0.aar\cf576d430f4eebb154795e7aae731e0b\AndroidManifest.xml:17:1-27:12
-INJECTED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml:2:1-18:12
-INJECTED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml:2:1-18:12
-INJECTED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml:2:1-18:12
+INJECTED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
+INJECTED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml:2:1-19:12
 	package
 		ADDED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml:2:102-137
 		INJECTED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml
@@ -186,6 +186,10 @@ MERGED from [com.google.android.gms:play-services-ads-lite:11.8.0] C:\Users\Roha
 MERGED from [com.google.android.gms:play-services-ads-lite:11.8.0] C:\Users\Rohan\.gradle\caches\transforms-1\files-1.1\play-services-ads-lite-11.8.0.aar\c07d8edf2acbb43ea3ed4fb543efa4b3\AndroidManifest.xml:24:5-79
 	android:name
 		ADDED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml:17:22-76
+uses-permission#com.android.vending.BILLING
+ADDED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml:18:5-67
+	android:name
+		ADDED from C:\xampp\htdocs\race\platforms\android\app\src\main\AndroidManifest.xml:18:22-64
 meta-data#com.google.android.gms.version
 ADDED from [com.google.android.gms:play-services-basement:11.8.0] C:\Users\Rohan\.gradle\caches\transforms-1\files-1.1\play-services-basement-11.8.0.aar\a7d78873167a24f0c3d0f86a5c842678\AndroidManifest.xml:23:9-25:69
 	android:value

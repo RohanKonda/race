@@ -1,0 +1,180 @@
+{"frames": [
+
+{
+	"filename": "ATTACK_000.png",
+	"frame": {"x":352,"y":1,"w":115,"h":99},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":115,"h":99},
+	"sourceSize": {"w":115,"h":99}
+},
+{
+	"filename": "ATTACK_001.png",
+	"frame": {"x":1,"y":304,"w":130,"h":99},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":130,"h":99},
+	"sourceSize": {"w":130,"h":99}
+},
+{
+	"filename": "ATTACK_002.png",
+	"frame": {"x":1,"y":203,"w":126,"h":99},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":126,"h":99},
+	"sourceSize": {"w":126,"h":99}
+},
+{
+	"filename": "ATTACK_003.png",
+	"frame": {"x":133,"y":304,"w":109,"h":122},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":109,"h":122},
+	"sourceSize": {"w":109,"h":122}
+},
+{
+	"filename": "ATTACK_004.png",
+	"frame": {"x":244,"y":304,"w":105,"h":127},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":105,"h":127},
+	"sourceSize": {"w":105,"h":127}
+},
+{
+	"filename": "ATTACK_005.png",
+	"frame": {"x":129,"y":203,"w":129,"h":98},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":129,"h":98},
+	"sourceSize": {"w":129,"h":98}
+},
+{
+	"filename": "ATTACK_006.png",
+	"frame": {"x":368,"y":102,"w":126,"h":99},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":126,"h":99},
+	"sourceSize": {"w":126,"h":99}
+},
+{
+	"filename": "DIE_000.png",
+	"frame": {"x":235,"y":1,"w":115,"h":98},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":115,"h":98},
+	"sourceSize": {"w":115,"h":98}
+},
+{
+	"filename": "DIE_001.png",
+	"frame": {"x":243,"y":102,"w":123,"h":98},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":123,"h":98},
+	"sourceSize": {"w":123,"h":98}
+},
+{
+	"filename": "DIE_002.png",
+	"frame": {"x":260,"y":203,"w":129,"h":98},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":129,"h":98},
+	"sourceSize": {"w":129,"h":98}
+},
+{
+	"filename": "DIE_003.png",
+	"frame": {"x":140,"y":433,"w":142,"h":94},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":142,"h":94},
+	"sourceSize": {"w":142,"h":94}
+},
+{
+	"filename": "DIE_004.png",
+	"frame": {"x":284,"y":433,"w":147,"h":89},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":147,"h":89},
+	"sourceSize": {"w":147,"h":89}
+},
+{
+	"filename": "DIE_005.png",
+	"frame": {"x":105,"y":1,"w":128,"h":77},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":128,"h":77},
+	"sourceSize": {"w":128,"h":77}
+},
+{
+	"filename": "DIE_006.png",
+	"frame": {"x":1,"y":1,"w":102,"h":84},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":102,"h":84},
+	"sourceSize": {"w":102,"h":84}
+},
+{
+	"filename": "RUN_000.png",
+	"frame": {"x":297,"y":533,"w":146,"h":98},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":146,"h":98},
+	"sourceSize": {"w":146,"h":98}
+},
+{
+	"filename": "RUN_001.png",
+	"frame": {"x":149,"y":533,"w":146,"h":97},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":146,"h":97},
+	"sourceSize": {"w":146,"h":97}
+},
+{
+	"filename": "RUN_002.png",
+	"frame": {"x":1,"y":433,"w":137,"h":98},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":137,"h":98},
+	"sourceSize": {"w":137,"h":98}
+},
+{
+	"filename": "RUN_003.png",
+	"frame": {"x":121,"y":102,"w":120,"h":97},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":120,"h":97},
+	"sourceSize": {"w":120,"h":97}
+},
+{
+	"filename": "RUN_004.png",
+	"frame": {"x":1,"y":102,"w":118,"h":97},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":118,"h":97},
+	"sourceSize": {"w":118,"h":97}
+},
+{
+	"filename": "RUN_005.png",
+	"frame": {"x":351,"y":304,"w":136,"h":98},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":136,"h":98},
+	"sourceSize": {"w":136,"h":98}
+},
+{
+	"filename": "RUN_006.png",
+	"frame": {"x":1,"y":533,"w":146,"h":97},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":146,"h":97},
+	"sourceSize": {"w":146,"h":97}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "alien2.png",
+	"format": "RGBA8888",
+	"size": {"w":495,"h":632},
+	"scale": "0.15",
+	"smartupdate": "$TexturePacker:SmartUpdate:b5b8f77b7d85ad6ea2bc8423b51a86c9:2608f953a26f56475b104c655abb652e:74d65f738d6031f2f4d971499b9d178a$"
+}
+}

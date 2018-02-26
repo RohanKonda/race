@@ -31,6 +31,14 @@ module.exports = [
     "clobbers": [
       "window.AdMob"
     ]
+  },
+  {
+    "id": "cc.fovea.cordova.purchase.InAppBillingPlugin",
+    "file": "plugins/cc.fovea.cordova.purchase/www/store-android.js",
+    "pluginId": "cc.fovea.cordova.purchase",
+    "clobbers": [
+      "store"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -39,7 +47,8 @@ module.exports.metadata =
   "cordova-plugin-whitelist": "1.3.3",
   "cordova-plugin-device-orientation": "1.0.7",
   "cordova-plugin-extension": "1.5.4",
-  "cordova-plugin-admobpro": "2.31.1"
+  "cordova-plugin-admobpro": "2.31.1",
+  "cc.fovea.cordova.purchase": "7.1.1"
 };
 // BOTTOM OF METADATA
 });

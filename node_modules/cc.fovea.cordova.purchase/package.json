@@ -1,0 +1,118 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "cc.fovea.cordova.purchase",
+        "scope": null,
+        "escapedName": "cc.fovea.cordova.purchase",
+        "name": "cc.fovea.cordova.purchase",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\xampp\\htdocs\\race"
+    ]
+  ],
+  "_from": "cc.fovea.cordova.purchase@latest",
+  "_id": "cc.fovea.cordova.purchase@7.1.1",
+  "_inCache": true,
+  "_location": "/cc.fovea.cordova.purchase",
+  "_nodeVersion": "6.10.3",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/cc.fovea.cordova.purchase_7.1.1_1519263161836_0.8904428795230614"
+  },
+  "_npmUser": {
+    "name": "jchoelt",
+    "email": "hoelt@fovea.cc"
+  },
+  "_npmVersion": "3.10.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "cc.fovea.cordova.purchase",
+    "scope": null,
+    "escapedName": "cc.fovea.cordova.purchase",
+    "name": "cc.fovea.cordova.purchase",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cc.fovea.cordova.purchase/-/cc.fovea.cordova.purchase-7.1.1.tgz",
+  "_shasum": "86df3ae957facd2fa510d360b0532ea403b13f71",
+  "_shrinkwrap": null,
+  "_spec": "cc.fovea.cordova.purchase",
+  "_where": "C:\\xampp\\htdocs\\race",
+  "author": {
+    "name": "Jean-Christophe Hoelt",
+    "email": "hoelt@fovea.cc"
+  },
+  "bugs": {
+    "url": "https://github.com/j3k0/cordova-plugin-purchase/issues"
+  },
+  "cordova": {
+    "id": "cc.fovea.cordova.purchase",
+    "platforms": [
+      "android",
+      "ios",
+      "wp8"
+    ]
+  },
+  "dependencies": {},
+  "description": "Cordova Purchase plugin for iOS and Android (AppStore and PlayStore)",
+  "devDependencies": {
+    "cordova": "^6.3.1",
+    "coveralls": "^2.11.14",
+    "eslint": "^3.8.1",
+    "istanbul": "^0.4.5",
+    "jshint": "^2.9.4",
+    "mocha": "^3.1.2",
+    "preprocessor": "^1.4.0",
+    "uglify-js": "^2.7.4"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "86df3ae957facd2fa510d360b0532ea403b13f71",
+    "tarball": "https://registry.npmjs.org/cc.fovea.cordova.purchase/-/cc.fovea.cordova.purchase-7.1.1.tgz",
+    "fileCount": 93,
+    "unpackedSize": 800725
+  },
+  "gitHead": "52ca80bd1984a7c702309768a162280ff621ad2e",
+  "homepage": "https://github.com/j3k0/cordova-plugin-purchase",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova-windows",
+    "cordova",
+    "phonegap",
+    "purchase",
+    "storekit",
+    "ios",
+    "android",
+    "play",
+    "appstore"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "jchoelt",
+      "email": "hoelt@fovea.cc"
+    }
+  ],
+  "name": "cc.fovea.cordova.purchase",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/j3k0/cordova-plugin-purchase.git"
+  },
+  "scripts": {
+    "coverage": "make test-js-coverage",
+    "test": "make test-js"
+  },
+  "version": "7.1.1"
+}
