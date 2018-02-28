@@ -22,6 +22,7 @@ Splash.prototype = {
     game.load.audio('playerJump','assets/bgm/jump.mp3');
     game.load.audio('monsterCry','assets/bgm/monster.mp3');
     game.load.audio('playerPain','assets/bgm/player_pain.mp3');
+    game.load.audio('ghost','assets/bgm/ghost.mp3');
   },
   // varios freebies found from google image search
   loadImages: function () {
@@ -42,11 +43,14 @@ Splash.prototype = {
     game.load.atlas('dude', 'assets/dude.png', 'assets/dude.json');
     game.load.atlas('alien1', 'assets/alien1.png', 'assets/alien1.json');
     game.load.atlas('alien2', 'assets/alien2.png', 'assets/alien2.json');
+    game.load.atlas('alien3', 'assets/alien3.png', 'assets/alien3.json');
     game.load.image('pause', 'assets/pause.png');
-    game.load.image('resume', 'assets/resume.png');
+    game.load.image('resume', 'assets/resume.png' );
     //game.load.spritesheet('dude', 'assets/dude.png',89,60);
     //game.load.spritesheet('dude1', 'assets/dude.png',85,51);
      game.load.image('jump', 'assets/jump.png');
+     game.load.image('jump_tween', 'assets/jump_tween.png');
+     game.load.image('shoot_tween', 'assets/shoot_tween.png');
      game.load.image('shoot', 'assets/shoot.png');
       game.load.image('kunai', 'assets/kunai.png');
       game.load.image('ninja', 'assets/ninja.png');
@@ -106,7 +110,10 @@ Splash.prototype = {
    shootKunaiSound = game.add.audio('shootKunai');
    playerJumpSound =game.add.audio('playerJump');
    monsterCry =game.add.audio('monsterCry');
+   ghostCry =game.add.audio('ghost');
    playerPainSound = game.add.audio('playerPain');
+
+
 
    //Load Admob
 
@@ -116,9 +123,11 @@ Splash.prototype = {
       rewardvideo: 'ca-app-pub-3940256099942544/5224354917'
     };
 
-    AdMob.createBanner({adId:admobid.banner,position:AdMob.AD_POSITION.BOTTOM_CENTE,autoShow:true});
-    AdMob.hideBanner()
+ if( /(android)/i.test(navigator.userAgent) ) { 
 
+    AdMob.createBanner({adId:admobid.banner,position:AdMob.AD_POSITION.TOP_CENTE,autoShow:true});
+    
+AdMob.showBanner();
       AdMob.prepareInterstitial({
         adId:admobid.interstitial,
         autoShow: false,
@@ -128,6 +137,7 @@ Splash.prototype = {
         console.log('Store not available');
        
     }
+  }
 
   },
 

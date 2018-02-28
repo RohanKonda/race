@@ -58,11 +58,13 @@ GameOver.prototype = {
 
 
 
-
+if( /(android)/i.test(navigator.userAgent) ) { 
 // show the interstitial later, e.g. at end of game level
 if(AdMob){
 
   AdMob.showInterstitial();
+}
+
 }
 
   }

@@ -24,6 +24,7 @@ this.kunaiCount = 25;
 var kunais;
 var aliens;
 var jump;
+var jump_tween;
 var shoot;
 this.timeSinceEmptyBullets = 0;
 this.getTimeElapsed;
@@ -195,33 +196,42 @@ pauseButton.events.onInputDown.add(this.onPause, this);
     kunaiCountTxt = game.add.text(60, 40, this.kunaiCount, { fontSize: '16px', fill: '#000' });
     //kunaiCountTxt.scale.setTo(scaleRatio/2, scaleRatio/2);
 
+    //Showing jumpimage for 4 sec and then removing it. Also blinking it.
+    jumpTween = game.add.sprite(game.width - 280, game.height - 132, 'jump_tween');
+    //jumpTween.anchor.setTo(0.5, 0.5);
+    jumpTween.alpha = 0;
+
+    game.add.tween(jumpTween).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true, 0, 1000, true);
+    game.time.events.add(Phaser.Timer.SECOND * 4, jumpTween.destroy, jumpTween);
     
-    
+    //Actual jump button
     jump = game.add.sprite(game.width - 280, game.height - 132, 'jump');
+
      //jump.scale.setTo(scaleRatio, scaleRatio);
      jump.inputEnabled = true;
+
+
+shootTween = game.add.sprite(game.width - 800, game.height - 132, 'shoot_tween');
+    //jumpTween.anchor.setTo(0.5, 0.5);
+    shootTween.alpha = 0;
+
+    game.add.tween(shootTween).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true, 0, 1000, true);
+    game.time.events.add(Phaser.Timer.SECOND * 4, shootTween.destroy, shootTween);
 
      shoot = game.add.sprite(game.width - 800, game.height - 132, 'shoot');
       shoot.inputEnabled = true;
     //shoot.scale.setTo(scaleRatio, scaleRatio);
+
+
       
 jump.events.onInputDown.add(this.onJump, this);
   shoot.events.onInputDown.add(this.onShoot, this);
 
 
 
-// admobid = {//  for Android
-//       banner: 'ca-app-pub-9764632418268157/1042215986',
-//       interstitial: 'ca-app-pub-9764632418268157/2825715729',
-//       rewardvideo: 'ca-app-pub-3940256099942544/5224354917'
-//     };
+ this.stage.disableVisibilityChange = false;// to detect app minimised
 
-
-
-// show the interstitial later, e.g. at end of game level
-
-
-  AdMob.showBanner();
+  
 
 
 
@@ -237,6 +247,13 @@ this.getTimeElapsed = game.time.now;
  game.physics.arcade.collide(this.aliens, ground);
  game.physics.arcade.overlap(player, this.aliens, this.killPlayer, null, this);
  
+
+ if(game.paused === true){
+  console.log("Game Paused");
+  gameMusic.pause();
+ }else{
+  gameMusic.resume();
+ }
  //console.log(this.aliens.countLiving());
 
 
@@ -268,6 +285,7 @@ randomNum = Math.floor(Math.random()*(4000-1000+1)+1000);
       alien = this.aliens.getFirstDead();
       if(alien===null || alien===undefined){
       alien= this.aliens.create(game.world.width-50, game.world.height - 500, 'alien1');
+      alien.name = 'alien1' + game.time.now;
      }else{
       alien.revive();
      }
@@ -275,15 +293,20 @@ randomNum = Math.floor(Math.random()*(4000-1000+1)+1000);
 
           alien = this.aliens.getFirstDead();
       if(alien===null || alien===undefined){
-
+        if(this.isPrime((Math.floor(Math.random() * 50) + 1))){
+      alien= this.aliens.create(game.world.width-50, game.world.height - 500, 'alien3');
+      alien.name = 'alien3' + game.time.now;
+        }else{
        alien= this.aliens.create(game.world.width-50, game.world.height - 500, 'alien2');
+       alien.name = 'alien2' + game.time.now;
+     }
      }else{
 
       alien.revive();
 
      }
          }
-      alien.name = 'alien' + game.time.now;
+      
       //console.log(aliens.length);
       alien.checkWorldBounds = true;
 
@@ -291,15 +314,34 @@ randomNum = Math.floor(Math.random()*(4000-1000+1)+1000);
 
       //alien = game.add.sprite(game.world.width-500, game.world.height - 400, 'alien1');
        //alien.scale.setTo(scaleRatio/2, scaleRatio/2);
-      game.physics.arcade.enable(this.aliens);
+
+      if(!alien.name.startsWith("alien3")){
+       
+     
        alien.body.gravity.y = 5000;
+    }else{
+       console.log('alienName: '+alien.name)
+             alien.body.gravity.y = 200;
+
+    }
+      game.physics.arcade.enable(this.aliens);
+       //alien.body.gravity.y = 5000;
       alien.animations.add('alien_run', [14,15,16,17,18,19,20], 5, true);
       alien.animations.play('alien_run');
       if(this.timeSinceLastIncrement >1600){
-     alien.body.velocity.x=-600;
+     alien.body.velocity.x=-650;
+     if(alien.name.startsWith("alien3")){
+      ghostCry.play();  
+    }else{
        monsterCry.play();
+     }
    }else{
-    alien.body.velocity.x=-400;
+    if(alien.name.startsWith("alien3")){
+      ghostCry.play(); 
+      alien.body.velocity.x=-550; 
+    }else{
+    alien.body.velocity.x=-450;
+  }
   
    }
      alien.events.onOutOfBounds.add(this.goodbye, this);
@@ -343,21 +385,24 @@ if(player.body.touching.down && !this.playerKilled && !this.shootPressed){
 
     }
 
-if(this.jumpPressed && player.body.touching.down && !this.playerKilled){
+if(this.jumpPressed && player.body.touching.down && !this.playerKilled && player.y > 377){
 
  //player.loadTexture('dude1',7);
  //if (!flipFlop) {
+  console.log("Player Y: "+player.y);
     player.animations.stop(null, true);
     playerJumpSound.play();
     player.animations.play('jump');
     //player.body.bounce.y = 2;
-    player.body.velocity.y = -2000
+    player.body.velocity.y = -1800
     player.body.gravity.y = 6000;
     
    this.flipFlop = true;
    this.jumpPressed = false;
 
 //}
+}else{
+  this.jumpPressed = false;
 }
 
 
@@ -459,9 +504,9 @@ killPlayer: function  (player, alien) {
 
    // console.log('overlapx' + player.body.overlapX);
 
-    // Removes the star from the screen
+    
     if(this.enableObstacleCollide){
-      if(alien.body.overlapX < 110 && player.body.overlapX > 50){ // Check exactly where the alien is touched, if its touched at the back, dont kill the player.
+      if(alien.body.overlapX < 90 && player.body.overlapX > 30){ // Check exactly where the alien is touched, if its touched at the back, dont kill the player.
     this.playerKilled=true;
    // alien.body.velocity.x=0;
 
@@ -542,7 +587,9 @@ resurectPlayer: function(player){
    player.animations.stop(null, true);
    
      this.playerKilled=false;
+     if(this.playerLives>0)
      this.playerLives--;
+
      playerLivesTxt.text = this.playerLives;
     player_res_anim = player.animations.play('right');
     player_res_anim.onLoop.add(this.reEnablePlayerCollide,this);
@@ -557,15 +604,48 @@ onPause: function(pauseButton){
 
  if(game.paused === true){
     game.paused = false;
+    
     pauseButton.loadTexture('pause',0,false);
   }else{
 
   game.paused = true;
+
   pauseButton.loadTexture('resume',0,false);
   
 }
 
 
+},
+
+
+isPrime: function (number) {
+  if (typeof number !== 'number' || !Number.isInteger(number)) {
+    return false;
+  }
+
+  if (number < 2) {
+    return false;
+  }
+
+  if (number === 2) {
+    return true;
+  } else if (number % 2 === 0) {
+    return false;
+  }
+ 
+  for (var i = 3; i*i <= number; i += 2) {
+    if (number % i === 0) {
+      return false;
+    }
+  }
+  return true;
+
+},
+
+
+destroySpriteAfter: function(s){
+
+game.time.events.add(Phaser.Timer.SECOND * 4, s.destroy, s);
 }
 
 
