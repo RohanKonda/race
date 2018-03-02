@@ -4,6 +4,23 @@
             "outputFile": "C:\\xampp\\htdocs\\race\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
+                    "source": "C:\\xampp\\htdocs\\race\\platforms\\android\\app\\src\\main\\res\\values\\billing_key_param.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "3",
+                        "startOffsets": "135",
+                        "endColumns": "439",
+                        "endOffsets": "571"
+                    },
+                    "to": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "458",
+                        "endColumns": "440",
+                        "endOffsets": "894"
+                    }
+                },
+                {
                     "source": "C:\\Users\\Rohan\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-11.8.0.aar\\a7d78873167a24f0c3d0f86a5c842678\\res\\values\\values.xml",
                     "from": {
                         "startLines": "4,7",
@@ -13,11 +30,11 @@
                         "endOffsets": "337,603"
                     },
                     "to": {
-                        "startLines": "3,6",
+                        "startLines": "3,7",
                         "startColumns": "4,4",
-                        "startOffsets": "279,458",
+                        "startOffsets": "279,899",
                         "endColumns": "67,166",
-                        "endOffsets": "342,620"
+                        "endOffsets": "342,1061"
                     }
                 },
                 {
@@ -30,11 +47,11 @@
                         "endOffsets": "220,97,156"
                     },
                     "to": {
-                        "startLines": "4,5,7",
+                        "startLines": "4,5,8",
                         "startColumns": "4,4,4",
-                        "startOffsets": "347,411,625",
+                        "startOffsets": "347,411,1066",
                         "endColumns": "63,46,58",
-                        "endOffsets": "406,453,679"
+                        "endOffsets": "406,453,1120"
                     }
                 },
                 {
@@ -47,11 +64,11 @@
                         "endOffsets": "207,280,314,349,398,462,497"
                     },
                     "to": {
-                        "startLines": "8,9,10,11,12,13,14",
+                        "startLines": "9,10,11,12,13,14,15",
                         "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "684,726,803,841,880,933,1001",
+                        "startOffsets": "1125,1167,1244,1282,1321,1374,1442",
                         "endColumns": "41,76,37,38,52,67,38",
-                        "endOffsets": "721,798,836,875,928,996,1035"
+                        "endOffsets": "1162,1239,1277,1316,1369,1437,1476"
                     }
                 },
                 {
@@ -65,12 +82,12 @@
                         "endOffsets": "560"
                     },
                     "to": {
-                        "startLines": "15",
+                        "startLines": "16",
                         "startColumns": "4",
-                        "startOffsets": "1040",
-                        "endLines": "22",
+                        "startOffsets": "1481",
+                        "endLines": "23",
                         "endColumns": "8",
-                        "endOffsets": "1433"
+                        "endOffsets": "1874"
                     }
                 }
             ]

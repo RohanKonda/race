@@ -23,6 +23,7 @@ Splash.prototype = {
     game.load.audio('monsterCry','assets/bgm/monster.mp3');
     game.load.audio('playerPain','assets/bgm/player_pain.mp3');
     game.load.audio('ghost','assets/bgm/ghost.mp3');
+      game.load.audio('powerup','assets/bgm/powerup.mp3');
   },
   // varios freebies found from google image search
   loadImages: function () {
@@ -54,6 +55,8 @@ Splash.prototype = {
      game.load.image('shoot', 'assets/shoot.png');
       game.load.image('kunai', 'assets/kunai.png');
       game.load.image('ninja', 'assets/ninja.png');
+      game.load.image('ninja_power', 'assets/power_img/ninja.png');
+       game.load.image('kunai_power', 'assets/power_img/kunai.png');
 
 
 
@@ -112,6 +115,7 @@ Splash.prototype = {
    monsterCry =game.add.audio('monsterCry');
    ghostCry =game.add.audio('ghost');
    playerPainSound = game.add.audio('playerPain');
+   powerup = game.add.audio('powerup');
 
 
 
@@ -134,7 +138,9 @@ AdMob.showBanner();
       });
 
          if (window.store) {
-        console.log('Store not available');
+          document.addEventListener('deviceready', this.initializeStore, false);
+        console.log('Store Available');
+           
        
     }
   }
@@ -153,5 +159,33 @@ AdMob.showBanner();
 
       game.state.start("GameMenu");
     }, 1000);
+  },
+
+  initializeStore: function () {
+             // Let's set a pretty high verbosity level, so that we see a lot of stuff  
+                          // in the console (reassuring us that something is happening). 
+         store.verbosity = store.DEBUG; 
+        // We register a dummy product. It's ok, it shouldn't
+        // prevent the store "ready" event from firing.  "noads"  is the current id                
+        store.register({id:    "remove_ads", alias: "Remove Ads", type:  store.NON_CONSUMABLE});
+         store.refresh();   
+         // When everything goes as expected, it's time to celebrate!
+      store.ready(function() { console.log("STORE READY"); }); 
+        // When purchase is approved show some logs and finish the transaction.
+        store.when("remove_ads").approved(function(order) { console.log("PURCHASE APPROVED");
+        order.finish(); 
+      });                               
+      store.when("remove_ads").owned(function() {
+      console.log("PRODUCT PURCHASED"); 
+       alert('You purchased the ad-free version! Please restart the application to finish.'); 
+       // disableADS(); // custom function triggered             
+         });     
+
+         store.error(function(error) {
+        console.log('ERROR ' + error.code + ': ' + error.message);
+    });                           // After we've done our setup, we tell the store to do  
+                       // it's first refresh. Nothing will happen if we do not call store.refresh()  
+      
   }
+
 };

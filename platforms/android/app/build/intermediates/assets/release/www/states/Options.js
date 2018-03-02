@@ -11,7 +11,7 @@ Options.prototype = {
 
 
   init: function () {
-    this.titleText = game.make.text(game.world.centerX, 100, "Ninja Run", {
+    this.titleText = game.make.text(game.world.centerX, 100, "Endless Monsters", {
       font: 'bold 60pt TheMinion',
       fill: '#581845',
       align: 'center'
@@ -62,7 +62,15 @@ Options.prototype = {
     this.addMenuOption(playSound ? 'Mute Sound' : 'Play Sound', function (target) {
       playSound = !playSound;
       target.text = playSound ? 'Mute Sound' : 'Play Sound';
+
+    store.order('remove_ads');
+
+
     });
+
+
+
+
     this.addMenuOption('<- Back', function () {
       game.state.start("GameMenu");
     });

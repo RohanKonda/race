@@ -34,7 +34,7 @@
   "cc.fovea.cordova.purchase": {
     "source": {
       "type": "registry",
-      "id": "cc.fovea.cordova.purchase"
+      "id": "cc.fovea.cordova.purchase@^7.1.2"
     },
     "is_top_level": true,
     "variables": {

@@ -14,13 +14,13 @@
     ]
   ],
   "_from": "cc.fovea.cordova.purchase@latest",
-  "_id": "cc.fovea.cordova.purchase@7.1.1",
+  "_id": "cc.fovea.cordova.purchase@7.1.2",
   "_inCache": true,
   "_location": "/cc.fovea.cordova.purchase",
   "_nodeVersion": "6.10.3",
   "_npmOperationalInternal": {
     "host": "s3://npm-registry-packages",
-    "tmp": "tmp/cc.fovea.cordova.purchase_7.1.1_1519263161836_0.8904428795230614"
+    "tmp": "tmp/cc.fovea.cordova.purchase_7.1.2_1519700822238_0.42253709903022196"
   },
   "_npmUser": {
     "name": "jchoelt",
@@ -41,8 +41,8 @@
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/cc.fovea.cordova.purchase/-/cc.fovea.cordova.purchase-7.1.1.tgz",
-  "_shasum": "86df3ae957facd2fa510d360b0532ea403b13f71",
+  "_resolved": "https://registry.npmjs.org/cc.fovea.cordova.purchase/-/cc.fovea.cordova.purchase-7.1.2.tgz",
+  "_shasum": "05bf76517f4817d7d48dc8017fb604ccea413969",
   "_shrinkwrap": null,
   "_spec": "cc.fovea.cordova.purchase",
   "_where": "C:\\xampp\\htdocs\\race",
@@ -75,12 +75,12 @@
   },
   "directories": {},
   "dist": {
-    "shasum": "86df3ae957facd2fa510d360b0532ea403b13f71",
-    "tarball": "https://registry.npmjs.org/cc.fovea.cordova.purchase/-/cc.fovea.cordova.purchase-7.1.1.tgz",
+    "shasum": "05bf76517f4817d7d48dc8017fb604ccea413969",
+    "tarball": "https://registry.npmjs.org/cc.fovea.cordova.purchase/-/cc.fovea.cordova.purchase-7.1.2.tgz",
     "fileCount": 93,
-    "unpackedSize": 800725
+    "unpackedSize": 800734
   },
-  "gitHead": "52ca80bd1984a7c702309768a162280ff621ad2e",
+  "gitHead": "95ce2b0638324d975cbbbc1844f12982f0f9caf5",
   "homepage": "https://github.com/j3k0/cordova-plugin-purchase",
   "keywords": [
     "ecosystem:cordova",
@@ -114,5 +114,5 @@
     "coverage": "make test-js-coverage",
     "test": "make test-js"
   },
-  "version": "7.1.1"
+  "version": "7.1.2"
 }

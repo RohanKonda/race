@@ -48,7 +48,7 @@ module.exports.metadata =
   "cordova-plugin-device-orientation": "1.0.7",
   "cordova-plugin-extension": "1.5.4",
   "cordova-plugin-admobpro": "2.31.1",
-  "cc.fovea.cordova.purchase": "7.1.1"
+  "cc.fovea.cordova.purchase": "7.1.2"
 };
 // BOTTOM OF METADATA
 });

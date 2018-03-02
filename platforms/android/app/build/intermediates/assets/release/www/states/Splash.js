@@ -22,6 +22,8 @@ Splash.prototype = {
     game.load.audio('playerJump','assets/bgm/jump.mp3');
     game.load.audio('monsterCry','assets/bgm/monster.mp3');
     game.load.audio('playerPain','assets/bgm/player_pain.mp3');
+    game.load.audio('ghost','assets/bgm/ghost.mp3');
+      game.load.audio('powerup','assets/bgm/powerup.mp3');
   },
   // varios freebies found from google image search
   loadImages: function () {
@@ -42,14 +44,19 @@ Splash.prototype = {
     game.load.atlas('dude', 'assets/dude.png', 'assets/dude.json');
     game.load.atlas('alien1', 'assets/alien1.png', 'assets/alien1.json');
     game.load.atlas('alien2', 'assets/alien2.png', 'assets/alien2.json');
+    game.load.atlas('alien3', 'assets/alien3.png', 'assets/alien3.json');
     game.load.image('pause', 'assets/pause.png');
-    game.load.image('resume', 'assets/resume.png');
+    game.load.image('resume', 'assets/resume.png' );
     //game.load.spritesheet('dude', 'assets/dude.png',89,60);
     //game.load.spritesheet('dude1', 'assets/dude.png',85,51);
      game.load.image('jump', 'assets/jump.png');
+     game.load.image('jump_tween', 'assets/jump_tween.png');
+     game.load.image('shoot_tween', 'assets/shoot_tween.png');
      game.load.image('shoot', 'assets/shoot.png');
       game.load.image('kunai', 'assets/kunai.png');
       game.load.image('ninja', 'assets/ninja.png');
+      game.load.image('ninja_power', 'assets/power_img/ninja.png');
+       game.load.image('kunai_power', 'assets/power_img/kunai.png');
 
 
 
@@ -65,7 +72,7 @@ Splash.prototype = {
   },
 
   init: function () {
-    this.loadingBar = game.make.sprite(game.world.centerX - 30, 300, "loading");
+    this.loadingBar = game.make.sprite(game.world.centerX - 200, 400, "loading");
     this.logo       = game.make.sprite(game.world.centerX, 200, 'brand');
     this.status     = game.make.text(game.world.centerX, 380, 'Loading...', {fill: 'white'});
     utils.centerGameObjects([this.logo, this.status]);
@@ -106,7 +113,11 @@ Splash.prototype = {
    shootKunaiSound = game.add.audio('shootKunai');
    playerJumpSound =game.add.audio('playerJump');
    monsterCry =game.add.audio('monsterCry');
+   ghostCry =game.add.audio('ghost');
    playerPainSound = game.add.audio('playerPain');
+   powerup = game.add.audio('powerup');
+
+
 
    //Load Admob
 
@@ -116,15 +127,23 @@ Splash.prototype = {
       rewardvideo: 'ca-app-pub-3940256099942544/5224354917'
     };
 
-    AdMob.createBanner({adId:admobid.banner,position:AdMob.AD_POSITION.BOTTOM_CENTE,autoShow:true});
-    AdMob.hideBanner()
+ if( /(android)/i.test(navigator.userAgent) ) { 
 
+    AdMob.createBanner({adId:admobid.banner,position:AdMob.AD_POSITION.TOP_CENTE,autoShow:true});
+    
+AdMob.showBanner();
       AdMob.prepareInterstitial({
         adId:admobid.interstitial,
         autoShow: false,
       });
 
-
+         if (window.store) {
+          document.addEventListener('deviceready', this.initializeStore, false);
+        console.log('Store Available');
+           
+       
+    }
+  }
 
   },
 
@@ -140,5 +159,33 @@ Splash.prototype = {
 
       game.state.start("GameMenu");
     }, 1000);
+  },
+
+  initializeStore: function () {
+             // Let's set a pretty high verbosity level, so that we see a lot of stuff  
+                          // in the console (reassuring us that something is happening). 
+         store.verbosity = store.DEBUG; 
+        // We register a dummy product. It's ok, it shouldn't
+        // prevent the store "ready" event from firing.  "noads"  is the current id                
+        store.register({id:    "remove_ads", alias: "Remove Ads", type:  store.NON_CONSUMABLE});
+         store.refresh();   
+         // When everything goes as expected, it's time to celebrate!
+      store.ready(function() { console.log("STORE READY"); }); 
+        // When purchase is approved show some logs and finish the transaction.
+        store.when("remove_ads").approved(function(order) { console.log("PURCHASE APPROVED");
+        order.finish(); 
+      });                               
+      store.when("remove_ads").owned(function() {
+      console.log("PRODUCT PURCHASED"); 
+       alert('You purchased the ad-free version! Please restart the application to finish.'); 
+       // disableADS(); // custom function triggered             
+         });     
+
+         store.error(function(error) {
+        console.log('ERROR ' + error.code + ': ' + error.message);
+    });                           // After we've done our setup, we tell the store to do  
+                       // it's first refresh. Nothing will happen if we do not call store.refresh()  
+      
   }
+
 };

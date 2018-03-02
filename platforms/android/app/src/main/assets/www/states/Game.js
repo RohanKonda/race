@@ -31,38 +31,15 @@ this.getTimeElapsed;
 this.startTime = 0;
 this.currentTime = 0;
 this.playerLives = 3;
+var ninja_powers;
+var ninja_power;
 
 
 
 
   },
 
-  // addMenuOption: function(text, callback) {
-  //   var optionStyle = { font: '30pt TheMinion', fill: 'white', align: 'left', stroke: 'rgba(0,0,0,0)', srokeThickness: 4};
-  //   var txt = game.add.text(game.world.centerX, (this.optionCount * 80) + 200, text, optionStyle);
-  //   txt.anchor.setTo(0.5);
-  //   txt.stroke = "rgba(0,0,0,0";
-  //   txt.strokeThickness = 4;
-  //   var onOver = function (target) {
-  //     target.fill = "#FEFFD5";
-  //     target.stroke = "rgba(200,200,200,0.5)";
-  //     txt.useHandCursor = true;
-  //   };
-  //   var onOut = function (target) {
-  //     target.fill = "white";
-  //     target.stroke = "rgba(0,0,0,0)";
-  //     txt.useHandCursor = false;
-  //   };
-  //   //txt.useHandCursor = true;
-  //   txt.inputEnabled = true;
-  //   txt.events.onInputUp.add(callback, this);
-  //   txt.events.onInputOver.add(onOver, this);
-  //   txt.events.onInputOut.add(onOut, this);
 
-  //   this.optionCount ++;
-
-
-  // },
 
   create: function () {
   //game.time.advancedTiming = true;
@@ -133,9 +110,12 @@ game.input.addPointer();
 
 //  The platforms group contains the ground and the 2 ledges we can jump on
     this.aliens = game.add.group();
+    this.ninja_powers = game.add.group();
+
 
     //  We will enable physics for any object that is created in this group
     this.aliens.enableBody = true;
+    this.ninja_powers.enableBody = true;
 
     this.kunais = game.add.group();
     this.kunais.enableBody = true;
@@ -190,7 +170,7 @@ player.body.checkCollision.left = false;
 pauseButton.events.onInputDown.add(this.onPause, this);
 
 
-    playerLivesTxt = game.add.text(game.width-50, 16, this.playerLives, { fontSize: '32px', fill: '#000' });
+    playerLivesTxt = game.add.text(game.width-50, 16, this.playerLives, { fontSize: '16px', fill: '#000' });
     //kunaiLabel.scale.setTo(scaleRatio,scaleRatio);
 
     kunaiCountTxt = game.add.text(60, 40, this.kunaiCount, { fontSize: '16px', fill: '#000' });
@@ -231,7 +211,8 @@ jump.events.onInputDown.add(this.onJump, this);
 
  this.stage.disableVisibilityChange = false;// to detect app minimised
 
-  
+//create some powers every 25 sec
+  game.time.events.repeat(Phaser.Timer.SECOND * 25, 10, this.createPower, this);
 
 
 
@@ -258,6 +239,7 @@ this.getTimeElapsed = game.time.now;
 
 
 game.physics.arcade.overlap(this.aliens, this.kunais, this.killAlien, null, this);
+game.physics.arcade.overlap(player,this.ninja_powers, this.deletePower, null, this);
 game.physics.arcade.collide(player, ground);
 //game.physics.arcade.collide(aliens, kunais);
 
@@ -465,13 +447,13 @@ if(this.shootPressed  && !this.playerKilled ){
 if(!player.body.touching.down && !this.flipFlop){
     player.animations.play('idle');
 }
-     
-//         if(flipFlop && player.body.touching.down){
-        
-//    //player.animations.play('right');
-//    flipFlop=false;
-    
-// }
+
+
+//create some powers
+
+ 
+
+
 },
 
 
@@ -643,9 +625,51 @@ isPrime: function (number) {
 },
 
 
-destroySpriteAfter: function(s){
+createPower: function() {
 
-game.time.events.add(Phaser.Timer.SECOND * 4, s.destroy, s);
+if((Math.floor(Math.random() * 10) + 1)% 2 == 0){
+  
+  ninja_power = this.ninja_powers.create(game.world.width-50,game.world.height - 400, 'ninja_power');
+   ninja_power.name = 'life' + game.time.now;
+}else{
+  ninja_power = this.ninja_powers.create(game.world.width-50,game.world.height - 400, 'kunai_power');
+   ninja_power.name = 'kunai' + game.time.now;
+}
+    game.physics.arcade.enable(ninja_power);
+    ninja_power.collideWorldBounds = true;
+
+    ninja_power.body.gravity.y = 10;
+   
+
+  ninja_power.body.velocity.x=-400;
+    
+    
+
+},
+
+
+deletePower: function (player,power) {
+
+console.log("PowerX: "+power.body.overlapX);
+
+if(power.body.overlapX < 60 && player.body.overlapX > 30){
+  if(power.name.startsWith("life")){
+    this.playerLives+=1;
+    playerLivesTxt.text = this.playerLives;
+   playerLivesTxt.fontSize = 32;
+   powerup.play();
+  }else{
+    this.kunaiCount+=5;
+    kunaiCountTxt.text = this.kunaiCount;
+    kunaiCountTxt.text.fontSize = 32
+    powerup.play();
+  }
+power.kill();
+
+}
+
+
+
 }
 
 
