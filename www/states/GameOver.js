@@ -47,6 +47,13 @@ GameOver.prototype = {
     var text = game.add.text(game.world.centerX, 100, "Game Over", titleStyle);
     text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     text.anchor.set(0.5);
+
+    var titleStyle2 = { font: 'bold 30pt TheMinion', fill: '#386A18', align: 'center'};
+    var text2 = game.add.text(game.world.centerX, 180, "Score: "+gameScore, titleStyle2);
+    text2.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
+    text2.anchor.set(0.5);
+
+
 console.log("remove_ads_key:"+window.localStorage.getItem("remove_ads_key"))
     if(window.localStorage.getItem("remove_ads_key") === null || !window.localStorage.getItem("remove_ads_key")==="yes"){
      this.addMenuOption('Remove Ads', function (e) {

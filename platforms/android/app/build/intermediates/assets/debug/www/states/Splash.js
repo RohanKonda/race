@@ -117,6 +117,7 @@ Splash.prototype = {
    ghostCry =game.add.audio('ghost');
    playerPainSound = game.add.audio('playerPain');
    powerup = game.add.audio('powerup');
+   gameScore=0;
 
 
 

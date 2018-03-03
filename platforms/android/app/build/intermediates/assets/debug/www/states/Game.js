@@ -7,12 +7,14 @@ Game.prototype = {
 
 //game.time.desiredFps = 30;
 
+
       
       var music;
       this.enableObstacleCollide = true;
 this.platforms;
 var player;
 var alien;
+var bigalien;
 var kunai;
 this.score=0;
 this.currentScore=0;
@@ -268,21 +270,40 @@ randomNum = Math.floor(Math.random()*(4000-1000+1)+1000);
    //Create a big monster every time score reaches a 500
    console.log("currentscore: "+this.currentScore);
 
-    if(this.currentScore > 150){
+    if(this.currentScore > 500){
 
-      alien= this.aliens.create(game.world.width-220, game.world.height - 500, 'alien4');
-      alien.name = 'alien4' + game.time.now;
+      bigalien= this.aliens.create(game.world.width-220, game.world.height - 500, 'alien4');
+      bigalien.name = 'alien4' + game.time.now;
       this.currentScore = 0;
-       alien.checkWorldBounds = true;
-       alien.body.gravity.y = 5000;
-       alien.body.velocity.x=-30;
+       bigalien.checkWorldBounds = true;
+       bigalien.body.gravity.y = 5000;
+       bigalien.body.velocity.x=-30;
        game.physics.arcade.enable(this.aliens);
        //alien.body.gravity.y = 5000;
-      alien.animations.add('alien_run', [14,15,16,17,18,19,20], 5, true);
-      alien.animations.play('alien_run');
+      bigalien.animations.add('alien_run', [14,15,16,17,18,19,20], 5, true);
+      bigalien.animations.play('alien_run');
+
+var barConfig = {width: 60,
+    height: 4,
+    x: bigalien.x +60,
+     y: game.world.height - 400,
+   bg: {
+      color: '#5AA926'
+    },
+    bar: {
+      color: '#C70039'
+    },
+    animationDuration: 200,
+  flipped: false};
+  this.myHealthBar = new HealthBar(this.game, barConfig);
+  
 
      }
-
+if(this.myHealthBar!=null){
+  this.myHealthBar.setPosition(bigalien.x + 60,game.world.height - 400);
+  console.log("shoot: "+this.shootbigAlien)
+  this.myHealthBar.setPercent(this.percentage(this.shootbigAlien,5));
+}
 
      //this.timeSinceLastIncrement = 0;
      if((Math.floor(Math.random() * 10) + 1)% 2 == 0){
@@ -565,6 +586,7 @@ alien.body.velocity.x=0;
     scoreText.text = 'Score: ' + this.score;
     //alien.destroy();
 this.shootbigAlien=0;
+this.myHealthBar.kill();
 
 }else{
    this.shootbigAlien+=1;
@@ -622,6 +644,7 @@ onShoot: function (){
 
 showGameOver: function(player){
 
+ gameScore = this.score;
    game.state.start("GameOver");
 },
 
@@ -737,7 +760,14 @@ power.kill();
 
 
 
-}
+},
+
+
+percentage: function (partialValue, totalValue) {
+
+  console.log("Percentage: "+(100 * partialValue) / totalValue);
+   return (100 * partialValue) / totalValue;
+} 
 
 
 
