@@ -15,6 +15,7 @@ var player;
 var alien;
 var kunai;
 this.score=0;
+this.currentScore=0;
 var jumpPressed = false;
 var shootPressed=false;
 var flipFlop=false;
@@ -33,6 +34,7 @@ this.currentTime = 0;
 this.playerLives = 3;
 var ninja_powers;
 var ninja_power;
+this.shootbigAlien = 0;
 
 
 
@@ -262,6 +264,26 @@ randomNum = Math.floor(Math.random()*(4000-1000+1)+1000);
     console.log('TSI: '+this.timeSinceLastIncrement)
    // console.log('Random: '+randomNum);
    this.startTime = this.currentTime;
+
+   //Create a big monster every time score reaches a 500
+   console.log("currentscore: "+this.currentScore);
+
+    if(this.currentScore > 150){
+
+      alien= this.aliens.create(game.world.width-220, game.world.height - 500, 'alien4');
+      alien.name = 'alien4' + game.time.now;
+      this.currentScore = 0;
+       alien.checkWorldBounds = true;
+       alien.body.gravity.y = 5000;
+       alien.body.velocity.x=-30;
+       game.physics.arcade.enable(this.aliens);
+       //alien.body.gravity.y = 5000;
+      alien.animations.add('alien_run', [14,15,16,17,18,19,20], 5, true);
+      alien.animations.play('alien_run');
+
+     }
+
+
      //this.timeSinceLastIncrement = 0;
      if((Math.floor(Math.random() * 10) + 1)% 2 == 0){
       alien = this.aliens.getFirstDead();
@@ -467,6 +489,7 @@ obj.kill();
     if(!this.playerKilled){
     //  Add and update the score
     this.score += 10;
+    this.currentScore += 10;
     scoreText.text = 'Score: ' + this.score;
 
 }
@@ -520,16 +543,54 @@ killAlien: function  (alien, kunai) {
     
  
 kunai.destroy();
+
 //
+
+if(alien.name.startsWith("alien4")){
+
+console.log("Killing alien4: "+this.shootbigAlien)
+
+  if(this.shootbigAlien>4){
+
+ alien.animations.stop(null, true);
+ alien.animations.add('alien_dead', [7,8,9,10,11,12,13], 15, false);
+      alien_dead_anim = alien.animations.play('alien_dead');
+      killAlienSound.play();
+      //alien.enableObstacleCollide= false;
+      alien_dead_anim.onComplete.add(this.destroyAlien, this)
+alien.body.velocity.x=0;
+   this.score += 40;
+  this.currentScore += 20; 
+
+    scoreText.text = 'Score: ' + this.score;
+    //alien.destroy();
+this.shootbigAlien=0;
+
+}else{
+   this.shootbigAlien+=1;
+    alien.animations.stop(null, true);
+ alien.animations.add('alien_hurt', [21,22,23,24,25,26,27], 10, false);
+      alien_hurt_anim = alien.animations.play('alien_hurt');
+      alien_hurt_anim.onComplete.add(this.alienRecover, this)
+   killAlienSound.play();
+}
+}else{
+
+
 alien.animations.stop(null, true);
  alien.animations.add('alien_dead', [7,8,9,10,11,12,13], 15, false);
       alien_dead_anim = alien.animations.play('alien_dead');
       killAlienSound.play();
+      alien.enableObstacleCollide= false;
       alien_dead_anim.onComplete.add(this.destroyAlien, this)
 alien.body.velocity.x=0;
    this.score += 20;
+  this.currentScore += 20; 
+
     scoreText.text = 'Score: ' + this.score;
     //alien.destroy();
+
+  }
 
 },
 
@@ -598,6 +659,12 @@ onPause: function(pauseButton){
 
 
 },
+
+alienRecover: function(alien){
+alien.animations.stop(null, true);
+alien.animations.play('alien_run');
+
+  },
 
 
 isPrime: function (number) {

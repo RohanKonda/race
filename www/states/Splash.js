@@ -14,9 +14,8 @@ Splash.prototype = {
   },
 
   loadBgm: function () {
-    // thanks Kevin Macleod at http://incompetech.com/
     game.load.audio('gameMusic', 'assets/bgm/game.mp3');
-    game.load.audio('exit', 'assets/bgm/Exit the Premises.mp3');
+    //me.load.audio('exit', 'assets/bgm/Exit the Premises.mp3');
     game.load.audio('killAlienSound','assets/bgm/pain.mp3');
     game.load.audio('shootKunai','assets/bgm/kunai.mp3');
     game.load.audio('playerJump','assets/bgm/jump.mp3');
@@ -45,6 +44,7 @@ Splash.prototype = {
     game.load.atlas('alien1', 'assets/alien1.png', 'assets/alien1.json');
     game.load.atlas('alien2', 'assets/alien2.png', 'assets/alien2.json');
     game.load.atlas('alien3', 'assets/alien3.png', 'assets/alien3.json');
+    game.load.atlas('alien4', 'assets/alien4.png', 'assets/alien4.json');
     game.load.image('pause', 'assets/pause.png');
     game.load.image('resume', 'assets/resume.png' );
     //game.load.spritesheet('dude', 'assets/dude.png',89,60);
@@ -57,6 +57,7 @@ Splash.prototype = {
       game.load.image('ninja', 'assets/ninja.png');
       game.load.image('ninja_power', 'assets/power_img/ninja.png');
        game.load.image('kunai_power', 'assets/power_img/kunai.png');
+        game.load.image('removeads', 'assets/in_app_img/removeads.png');
 
 
 
@@ -129,6 +130,8 @@ Splash.prototype = {
 
  if( /(android)/i.test(navigator.userAgent) ) { 
 
+  if(window.localStorage.getItem("remove_ads_key") === null || !window.localStorage.getItem("remove_ads_key")==="yes"){
+
     AdMob.createBanner({adId:admobid.banner,position:AdMob.AD_POSITION.TOP_CENTE,autoShow:true});
     
 AdMob.showBanner();
@@ -137,12 +140,19 @@ AdMob.showBanner();
         autoShow: false,
       });
 
-         if (window.store) {
+       
+
+  }
+
+    if (window.store) {
+       console.log('Store Available');
           document.addEventListener('deviceready', this.initializeStore, false);
-        console.log('Store Available');
+       
            
        
     }
+
+
   }
 
   },
@@ -168,24 +178,15 @@ AdMob.showBanner();
         // We register a dummy product. It's ok, it shouldn't
         // prevent the store "ready" event from firing.  "noads"  is the current id                
         store.register({id:    "remove_ads", alias: "Remove Ads", type:  store.NON_CONSUMABLE});
-         store.refresh();   
-         // When everything goes as expected, it's time to celebrate!
+                   // When everything goes as expected, it's time to celebrate!
       store.ready(function() { console.log("STORE READY"); }); 
-        // When purchase is approved show some logs and finish the transaction.
-        store.when("remove_ads").approved(function(order) { console.log("PURCHASE APPROVED");
-        order.finish(); 
-      });                               
-      store.when("remove_ads").owned(function() {
-      console.log("PRODUCT PURCHASED"); 
-       alert('You purchased the ad-free version! Please restart the application to finish.'); 
-       // disableADS(); // custom function triggered             
-         });     
+       
 
          store.error(function(error) {
         console.log('ERROR ' + error.code + ': ' + error.message);
     });                           // After we've done our setup, we tell the store to do  
                        // it's first refresh. Nothing will happen if we do not call store.refresh()  
-      
+      store.refresh();  
   }
 
 };

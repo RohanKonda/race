@@ -12,7 +12,7 @@ Options.prototype = {
 
   init: function () {
     this.titleText = game.make.text(game.world.centerX, 100, "Endless Monsters", {
-      font: 'bold 60pt TheMinion',
+      font: 'bold 50pt TheMinion',
       fill: '#581845',
       align: 'center'
     });
@@ -63,7 +63,7 @@ Options.prototype = {
       playSound = !playSound;
       target.text = playSound ? 'Mute Sound' : 'Play Sound';
 
-    store.order('remove_ads');
+    
 
 
     });

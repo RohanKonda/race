@@ -13,8 +13,8 @@ GameMenu.prototype = {
             //preppare and load ad resource in background, e.g. at begining of game level
         
 
-    this.titleText = game.make.text(game.world.centerX, 100, "Ninja Run", {
-      font: 'bold 60pt TheMinion',
+    this.titleText = game.make.text(game.world.centerX, 100, "Endless Monsters", {
+      font: 'bold 50pt TheMinion',
       fill: '#581845',
       align: 'center'
     });     
