@@ -44,6 +44,7 @@ Splash.prototype = {
     game.load.atlas('alien1', 'assets/alien1.png', 'assets/alien1.json');
     game.load.atlas('alien2', 'assets/alien2.png', 'assets/alien2.json');
     game.load.atlas('alien3', 'assets/alien3.png', 'assets/alien3.json');
+    game.load.atlas('alien4', 'assets/alien4.png', 'assets/alien4.json');
     game.load.image('pause', 'assets/pause.png');
     game.load.image('resume', 'assets/resume.png' );
     //game.load.spritesheet('dude', 'assets/dude.png',89,60);
@@ -116,6 +117,7 @@ Splash.prototype = {
    ghostCry =game.add.audio('ghost');
    playerPainSound = game.add.audio('playerPain');
    powerup = game.add.audio('powerup');
+   gameScore=0;
 
 
 

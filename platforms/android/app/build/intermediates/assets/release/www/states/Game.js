@@ -7,15 +7,18 @@ Game.prototype = {
 
 //game.time.desiredFps = 30;
 
+
       
-      var music;
-      this.enableObstacleCollide = true;
+var music;
+this.enableObstacleCollide = true;
 this.platforms;
 var player;
 var alien;
+var bigalien;
 var kunai;
 this.score=0;
-var jumpPressed = false;
+this.currentScore=0;
+this.jumpPressed = false;
 var shootPressed=false;
 var flipFlop=false;
 this.timeSinceLastIncrement = 0;
@@ -33,6 +36,7 @@ this.currentTime = 0;
 this.playerLives = 3;
 var ninja_powers;
 var ninja_power;
+this.shootbigAlien = 0;
 
 
 
@@ -262,6 +266,45 @@ randomNum = Math.floor(Math.random()*(4000-1000+1)+1000);
     console.log('TSI: '+this.timeSinceLastIncrement)
    // console.log('Random: '+randomNum);
    this.startTime = this.currentTime;
+
+   //Create a big monster every time score reaches a 500
+   console.log("currentscore: "+this.currentScore);
+
+    if(this.currentScore > 500){
+
+      bigalien= this.aliens.create(game.world.width-220, game.world.height - 500, 'alien4');
+      bigalien.name = 'alien4' + game.time.now;
+      this.currentScore = 0;
+       bigalien.checkWorldBounds = true;
+       bigalien.body.gravity.y = 5000;
+       bigalien.body.velocity.x=-30;
+       game.physics.arcade.enable(this.aliens);
+       //alien.body.gravity.y = 5000;
+      bigalien.animations.add('alien_run', [14,15,16,17,18,19,20], 5, true);
+      bigalien.animations.play('alien_run');
+
+var barConfig = {width: 60,
+    height: 4,
+    x: bigalien.x +60,
+     y: game.world.height - 300,
+   bg: {
+      color: '#5AA926'
+    },
+    bar: {
+      color: '#C70039'
+    },
+    animationDuration: 200,
+  flipped: false};
+  this.myHealthBar = new HealthBar(this.game, barConfig);
+  
+
+     }
+if(this.myHealthBar!=null){
+  this.myHealthBar.setPosition(bigalien.x + 60,game.world.height - 300);
+  console.log("shoot: "+this.shootbigAlien)
+  this.myHealthBar.setPercent(this.percentage(this.shootbigAlien,5));
+}
+
      //this.timeSinceLastIncrement = 0;
      if((Math.floor(Math.random() * 10) + 1)% 2 == 0){
       alien = this.aliens.getFirstDead();
@@ -367,7 +410,7 @@ if(player.body.touching.down && !this.playerKilled && !this.shootPressed){
 
     }
 
-if(this.jumpPressed && player.body.touching.down && !this.playerKilled && player.y > 377){
+if(this.jumpPressed && player.body.touching.down && !this.playerKilled && player.y > 378){
 
  //player.loadTexture('dude1',7);
  //if (!flipFlop) {
@@ -376,16 +419,17 @@ if(this.jumpPressed && player.body.touching.down && !this.playerKilled && player
     playerJumpSound.play();
     player.animations.play('jump');
     //player.body.bounce.y = 2;
-    player.body.velocity.y = -1800
+    player.body.velocity.y = -1800;
     player.body.gravity.y = 6000;
     
    this.flipFlop = true;
    this.jumpPressed = false;
 
 //}
-}else{
-  this.jumpPressed = false;
 }
+// else{
+//   this.jumpPressed = false;
+// }
 
 
 if(this.shootPressed  && !this.playerKilled ){
@@ -442,6 +486,8 @@ if(this.shootPressed  && !this.playerKilled ){
    this.shootPressed = false;
 
 //}
+}else{
+   this.shootPressed = false;
 }
 
 if(!player.body.touching.down && !this.flipFlop){
@@ -467,6 +513,7 @@ obj.kill();
     if(!this.playerKilled){
     //  Add and update the score
     this.score += 10;
+    this.currentScore += 10;
     scoreText.text = 'Score: ' + this.score;
 
 }
@@ -495,7 +542,10 @@ killPlayer: function  (player, alien) {
 
 alien.animations.stop(null, true);
  alien.animations.add('alien_attack', [0,1,2,3,4,5,6], 10, false);
-alien.animations.play('alien_attack');
+alien_attack_anim = alien.animations.play('alien_attack');
+alien_attack_anim.onComplete.add(this.alienRecover,this);
+
+
     player.animations.stop(null, true);
     playerPainSound.play();
      player_dead_anim = player.animations.play('dead');
@@ -511,7 +561,7 @@ alien.animations.play('alien_attack');
     
  }
  }
-    //player.kill();
+  shootPressed=false;
 
 
 },
@@ -520,16 +570,55 @@ killAlien: function  (alien, kunai) {
     
  
 kunai.destroy();
+
 //
+
+if(alien.name.startsWith("alien4")){
+
+console.log("Killing alien4: "+this.shootbigAlien)
+
+  if(this.shootbigAlien>4){
+
+ alien.animations.stop(null, true);
+ alien.animations.add('alien_dead', [7,8,9,10,11,12,13], 15, false);
+      alien_dead_anim = alien.animations.play('alien_dead');
+      killAlienSound.play();
+      //alien.enableObstacleCollide= false;
+      alien_dead_anim.onComplete.add(this.destroyAlien, this)
+alien.body.velocity.x=0;
+   this.score += 40;
+  this.currentScore += 20; 
+
+    scoreText.text = 'Score: ' + this.score;
+    //alien.destroy();
+this.shootbigAlien=0;
+this.myHealthBar.kill();
+
+}else{
+   this.shootbigAlien+=1;
+    alien.animations.stop(null, true);
+ alien.animations.add('alien_hurt', [21,22,23,24,25,26,27], 10, false);
+      alien_hurt_anim = alien.animations.play('alien_hurt');
+      alien_hurt_anim.onComplete.add(this.alienRecover, this)
+   killAlienSound.play();
+}
+}else{
+
+
 alien.animations.stop(null, true);
  alien.animations.add('alien_dead', [7,8,9,10,11,12,13], 15, false);
       alien_dead_anim = alien.animations.play('alien_dead');
       killAlienSound.play();
+      alien.enableObstacleCollide= false;
       alien_dead_anim.onComplete.add(this.destroyAlien, this)
 alien.body.velocity.x=0;
    this.score += 20;
+  this.currentScore += 20; 
+
     scoreText.text = 'Score: ' + this.score;
     //alien.destroy();
+
+  }
 
 },
 
@@ -548,7 +637,7 @@ console.log('sprite deleted');
 },
 
 onJump: function (){
-
+if(player.body.touching.down && !this.playerKilled && player.y > 378 && this.jumpPressed === false)
     this.jumpPressed = true;
 },
 
@@ -560,6 +649,10 @@ onShoot: function (){
 
 
 showGameOver: function(player){
+
+ gameScore = this.score;
+ if(gameScore > window.localStorage.getItem("high_score_key"))
+ window.localStorage.setItem("high_score_key", gameScore);  
 
    game.state.start("GameOver");
 },
@@ -598,6 +691,12 @@ onPause: function(pauseButton){
 
 
 },
+
+alienRecover: function(alien){
+alien.animations.stop(null, true);
+alien.animations.play('alien_run');
+
+  },
 
 
 isPrime: function (number) {
@@ -670,7 +769,14 @@ power.kill();
 
 
 
-}
+},
+
+
+percentage: function (partialValue, totalValue) {
+
+  console.log("Percentage: "+(100 * partialValue) / totalValue);
+   return (100 * partialValue) / totalValue;
+} 
 
 
 

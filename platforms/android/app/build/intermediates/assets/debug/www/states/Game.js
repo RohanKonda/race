@@ -9,8 +9,8 @@ Game.prototype = {
 
 
       
-      var music;
-      this.enableObstacleCollide = true;
+var music;
+this.enableObstacleCollide = true;
 this.platforms;
 var player;
 var alien;
@@ -18,7 +18,7 @@ var bigalien;
 var kunai;
 this.score=0;
 this.currentScore=0;
-var jumpPressed = false;
+this.jumpPressed = false;
 var shootPressed=false;
 var flipFlop=false;
 this.timeSinceLastIncrement = 0;
@@ -286,7 +286,7 @@ randomNum = Math.floor(Math.random()*(4000-1000+1)+1000);
 var barConfig = {width: 60,
     height: 4,
     x: bigalien.x +60,
-     y: game.world.height - 400,
+     y: game.world.height - 300,
    bg: {
       color: '#5AA926'
     },
@@ -300,7 +300,7 @@ var barConfig = {width: 60,
 
      }
 if(this.myHealthBar!=null){
-  this.myHealthBar.setPosition(bigalien.x + 60,game.world.height - 400);
+  this.myHealthBar.setPosition(bigalien.x + 60,game.world.height - 300);
   console.log("shoot: "+this.shootbigAlien)
   this.myHealthBar.setPercent(this.percentage(this.shootbigAlien,5));
 }
@@ -410,7 +410,7 @@ if(player.body.touching.down && !this.playerKilled && !this.shootPressed){
 
     }
 
-if(this.jumpPressed && player.body.touching.down && !this.playerKilled && player.y > 377){
+if(this.jumpPressed && player.body.touching.down && !this.playerKilled && player.y > 378){
 
  //player.loadTexture('dude1',7);
  //if (!flipFlop) {
@@ -419,16 +419,17 @@ if(this.jumpPressed && player.body.touching.down && !this.playerKilled && player
     playerJumpSound.play();
     player.animations.play('jump');
     //player.body.bounce.y = 2;
-    player.body.velocity.y = -1800
+    player.body.velocity.y = -1800;
     player.body.gravity.y = 6000;
     
    this.flipFlop = true;
    this.jumpPressed = false;
 
 //}
-}else{
-  this.jumpPressed = false;
 }
+// else{
+//   this.jumpPressed = false;
+// }
 
 
 if(this.shootPressed  && !this.playerKilled ){
@@ -485,6 +486,8 @@ if(this.shootPressed  && !this.playerKilled ){
    this.shootPressed = false;
 
 //}
+}else{
+   this.shootPressed = false;
 }
 
 if(!player.body.touching.down && !this.flipFlop){
@@ -539,7 +542,10 @@ killPlayer: function  (player, alien) {
 
 alien.animations.stop(null, true);
  alien.animations.add('alien_attack', [0,1,2,3,4,5,6], 10, false);
-alien.animations.play('alien_attack');
+alien_attack_anim = alien.animations.play('alien_attack');
+alien_attack_anim.onComplete.add(this.alienRecover,this);
+
+
     player.animations.stop(null, true);
     playerPainSound.play();
      player_dead_anim = player.animations.play('dead');
@@ -555,7 +561,7 @@ alien.animations.play('alien_attack');
     
  }
  }
-    //player.kill();
+  shootPressed=false;
 
 
 },
@@ -631,7 +637,7 @@ console.log('sprite deleted');
 },
 
 onJump: function (){
-
+if(player.body.touching.down && !this.playerKilled && player.y > 378 && this.jumpPressed === false)
     this.jumpPressed = true;
 },
 
@@ -645,6 +651,9 @@ onShoot: function (){
 showGameOver: function(player){
 
  gameScore = this.score;
+ if(gameScore > window.localStorage.getItem("high_score_key"))
+ window.localStorage.setItem("high_score_key", gameScore);  
+
    game.state.start("GameOver");
 },
 

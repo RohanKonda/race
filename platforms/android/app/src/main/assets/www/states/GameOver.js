@@ -48,15 +48,23 @@ GameOver.prototype = {
     text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     text.anchor.set(0.5);
 
-    var titleStyle2 = { font: 'bold 30pt TheMinion', fill: '#386A18', align: 'center'};
+    var titleStyle2 = { font: 'bold 25pt TheMinion', fill: '#386A18', align: 'center'};
     var text2 = game.add.text(game.world.centerX, 180, "Score: "+gameScore, titleStyle2);
     text2.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     text2.anchor.set(0.5);
+
+    if(window.localStorage.getItem("high_score_key")!=null){
+    var titleStyle3 = { font: 'bold 30pt TheMinion', fill: '#386A18', align: 'center'};
+    var text3 = game.add.text(game.world.centerX, 240, "Highest Score: "+window.localStorage.getItem("high_score_key"), titleStyle2);
+    text3.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
+    text3.anchor.set(0.5);
+  }
 
 
 console.log("remove_ads_key:"+window.localStorage.getItem("remove_ads_key"))
     if(window.localStorage.getItem("remove_ads_key") === null || !window.localStorage.getItem("remove_ads_key")==="yes"){
      this.addMenuOption('Remove Ads', function (e) {
+
      // window.localStorage.setItem("remove_ads_key", "yes");   
          // When purchase is approved show some logs and finish the transaction.
 document.addEventListener('deviceready', this.initializeStore, false);
@@ -109,16 +117,18 @@ if(AdMob){
 
           console.log("PURCHASE APPROVED");
         order.finish(); 
+      alert('Please restart the application to finish'); 
       });                               
       store.when("remove_ads").owned(function() {
       console.log("PRODUCT PURCHASED"); 
-      // alert('You purchased the ad-free version! Please restart the application to finish.'); 
+      
        // disableADS(); // custom function triggered  
-       window.localStorage.setItem("remove_ads_key", "yes");           
+       window.localStorage.setItem("remove_ads_key", "yes");     
+       //ert('You have already purchased this item');       
          });     
 
 
-      store.refresh();  
+     // store.refresh();  
   }
 
 

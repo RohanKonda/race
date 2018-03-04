@@ -57,6 +57,10 @@ Splash.prototype = {
       game.load.image('ninja', 'assets/ninja.png');
       game.load.image('ninja_power', 'assets/power_img/ninja.png');
        game.load.image('kunai_power', 'assets/power_img/kunai.png');
+        game.load.image('buykunai1', 'assets/in_app_img/kunai_inapp1.png');
+        game.load.image('buykunai2', 'assets/in_app_img/kunai_inapp2.png');
+        game.load.image('buylives1', 'assets/in_app_img/playerInapp1.png');
+        game.load.image('buylives2', 'assets/in_app_img/playerInapp2.png');
         game.load.image('removeads', 'assets/in_app_img/removeads.png');
 
 
