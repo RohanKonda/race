@@ -4,8 +4,9 @@ Game.prototype = {
 
   preload: function () {
         this.optionCount = 1;
-
-//game.time.desiredFps = 30;
+//this.game.renderer.renderSession.roundPixels = true;
+//game.time.desiredFps = 40;
+//game.forceSingleUpdate = true; 
 
 
       
@@ -23,7 +24,7 @@ var shootPressed=false;
 var flipFlop=false;
 this.timeSinceLastIncrement = 0;
 this.playerKilled = false;
-this.kunaiCount = 25;
+this.kunaiCount;
 var kunais;
 var aliens;
 var jump;
@@ -33,10 +34,13 @@ this.timeSinceEmptyBullets = 0;
 this.getTimeElapsed;
 this.startTime = 0;
 this.currentTime = 0;
-this.playerLives = 3;
+this.playerLives;
 var ninja_powers;
 var ninja_power;
 this.shootbigAlien = 0;
+var waitGameOverCount=0;
+
+
 
 
 
@@ -46,12 +50,23 @@ this.shootbigAlien = 0;
 
 
   create: function () {
-  //game.time.advancedTiming = true;
-    // this.stage.disableVisibilityChange = false;
-    // game.add.sprite(0, 0, 'stars');
-    // this.addMenuOption('Next ->', function (e) {
-    //   this.game.state.start("GameOver");
-    // });
+ 
+menuMusic.stop();
+
+if(window.localStorage.getItem("lives_count_key")!=null){
+
+  this.playerLives = parseInt(window.localStorage.getItem("lives_count_key"))+3;
+}else{
+  this.playerLives =3;
+}
+
+if(window.localStorage.getItem("kunai_count_key")!=null){
+
+  this.kunaiCount = parseInt(window.localStorage.getItem("kunai_count_key"))+25;
+}else{
+  this.kunaiCount = 25;
+}
+
  gameMusic.loop = true;
     gameMusic.play();
 
@@ -67,6 +82,10 @@ game.input.addPointer();
     var background = game.add.sprite(0, 0, 'sky');
      var sun = game.add.sprite(0, 0, 'sun');
     //background.scale.setTo(scaleRatio, scaleRatio);
+
+
+
+
 
     this.back_land = this.game.add.tileSprite(0,
         this.game.height - this.game.cache.getImage('back_land').height,
@@ -89,12 +108,6 @@ game.input.addPointer();
         'cloud'
     );   
 
-    //  this.clouds_2 = this.game.add.tileSprite(0,
-    //     this.game.height - this.game.cache.getImage('clouds_2').height,
-    //     this.game.width,
-    //     this.game.cache.getImage('clouds_2').height,
-    //     'clouds_2'
-    // ); 
 
        this.decor = this.game.add.tileSprite(0,
         this.game.height - this.game.cache.getImage('decor').height,
@@ -110,7 +123,9 @@ game.input.addPointer();
         'land'
     ); 
 
+   this.displayNotif("Get Ready...");
 
+    
 
 //  The platforms group contains the ground and the 2 ledges we can jump on
     this.aliens = game.add.group();
@@ -173,6 +188,13 @@ player.body.checkCollision.left = false;
       
 pauseButton.events.onInputDown.add(this.onPause, this);
 
+restartButton = game.add.sprite(game.width-200,16,'restart');
+  restartButton.inputEnabled = true;
+  restartButton.events.onInputDown.add(this.onRestart, this);
+
+  homeButton = game.add.sprite(game.width-700,16,'home');
+  homeButton.inputEnabled = true;
+  homeButton.events.onInputDown.add(this.onHome, this);
 
     playerLivesTxt = game.add.text(game.width-50, 16, this.playerLives, { fontSize: '16px', fill: '#000' });
     //kunaiLabel.scale.setTo(scaleRatio,scaleRatio);
@@ -260,7 +282,7 @@ this.timeSinceLastIncrement = this.currentTime - this.startTime;
 
 
 
-randomNum = Math.floor(Math.random()*(4000-1000+1)+1000);
+randomNum = Math.floor(Math.random()*((Math.floor(Math.random()*(4000-3000+1)+3000))-(Math.floor(Math.random()*(1000-500+1)+500))+1)+(Math.floor(Math.random()*(1000-500+1)+500)));
    if (this.timeSinceLastIncrement > randomNum)  // Random number between 1500 and 4000
    {
     console.log('TSI: '+this.timeSinceLastIncrement)
@@ -269,6 +291,12 @@ randomNum = Math.floor(Math.random()*(4000-1000+1)+1000);
 
    //Create a big monster every time score reaches a 500
    console.log("currentscore: "+this.currentScore);
+
+   if(this.currentScore > 460 && this.currentScore < 490){
+
+    this.displayNotif("Watchout...!!!")
+
+   }
 
     if(this.currentScore > 500){
 
@@ -353,7 +381,7 @@ if(this.myHealthBar!=null){
        //alien.body.gravity.y = 5000;
       alien.animations.add('alien_run', [14,15,16,17,18,19,20], 5, true);
       alien.animations.play('alien_run');
-      if(this.timeSinceLastIncrement >1600){
+      if(this.timeSinceLastIncrement >1500){
      alien.body.velocity.x=-650;
      if(alien.name.startsWith("alien3")){
       ghostCry.play();  
@@ -375,15 +403,15 @@ this.timeSinceLastIncrement = 0;
  
      //console.log(alien.name+' '+alien.x)
 //Reload kunai
-         if(this.timeSinceEmptyBullets>0){
-            console.log('game'+game.time.now);
-        if((this.getTimeElapsed - this.timeSinceEmptyBullets) > 10000){
+      //    if(this.timeSinceEmptyBullets>0){
+      //       console.log('game'+game.time.now);
+      //   if((this.getTimeElapsed - this.timeSinceEmptyBullets) > 10000){
 
-          this.timeSinceEmptyBullets=0;
-          this.kunaiCount = 10;
-          kunaiCountTxt.text = this.kunaiCount;
-        }
-      }
+      //     this.timeSinceEmptyBullets=0;
+      //     this.kunaiCount = 10;
+      //     kunaiCountTxt.text = this.kunaiCount;
+      //   }
+      // }
 
 }
 
@@ -395,8 +423,8 @@ this.timeSinceLastIncrement = 0;
     this.cloud.tilePosition.x -= 0.75; 
    // this.clouds_2.tilePosition.x -= 0.55; 
     this.decor.tilePosition.x -= 1.3; 
-    this.land.tilePosition.x -= 8; 
-    ground.tilePosition.x -= 8; 
+    this.land.tilePosition.x -= 7; 
+    ground.tilePosition.x -= 7; 
      
      //player.animations.play('idle');
      // player.body.velocity.x = 150;
@@ -461,8 +489,26 @@ if(this.shootPressed  && !this.playerKilled ){
       kunai.events.onOutOfBounds.add(this.deleteKunai , this);
       
       this.kunaiCount --;
+
+      if(this.kunaiCount===10){
+
+        this.displayNotif("Yo!! Running out of Knives...");
+      }
+
+      if(this.kunaiCount===5){
+
+        this.displayNotif("Save knives you will need them...");
+      }
+
+      if(window.localStorage.getItem("kunai_count_key")!=null){
+
+        window.localStorage.setItem("kunai_count_key",this.kunaiCount);
+
+      }
     }
       if(this.kunaiCount===0){
+
+          this.displayNotif(" :( You are empty");
 
           if(this.timeSinceEmptyBullets==0){
           this.timeSinceEmptyBullets  = game.time.now;
@@ -510,7 +556,7 @@ obj.kill();
 
 
  //console.log('alien killed');
-    if(!this.playerKilled){
+    if(!this.playerKilled ){
     //  Add and update the score
     this.score += 10;
     this.currentScore += 10;
@@ -551,6 +597,9 @@ alien_attack_anim.onComplete.add(this.alienRecover,this);
      player_dead_anim = player.animations.play('dead');
 
      if(this.playerLives>0){
+      if(this.score > 0)//attempt to currect the score if player is dead
+        this.score-=10;
+
       player_dead_anim.onComplete.add(this.resurectPlayer, this)
        this.enableObstacleCollide=false;
      }else{
@@ -577,7 +626,13 @@ if(alien.name.startsWith("alien4")){
 
 console.log("Killing alien4: "+this.shootbigAlien)
 
-  if(this.shootbigAlien>4){
+if(this.shootbigAlien===1){
+
+  this.displayNotif("Hit it again...");
+}
+
+
+  if(this.shootbigAlien==5){
 
  alien.animations.stop(null, true);
  alien.animations.add('alien_dead', [7,8,9,10,11,12,13], 15, false);
@@ -654,7 +709,15 @@ showGameOver: function(player){
  if(gameScore > window.localStorage.getItem("high_score_key"))
  window.localStorage.setItem("high_score_key", gameScore);  
 
+
+   
+
+  //if(this.waitGameOverCount===2){
    game.state.start("GameOver");
+  //}else{
+  //    game.time.events.repeat(Phaser.Timer.SECOND * 25, 10, this.showGameOver, this);
+  //    this.waitGameOverCount+=1;
+  // }
 },
 
 resurectPlayer: function(player){
@@ -664,6 +727,11 @@ resurectPlayer: function(player){
      this.playerKilled=false;
      if(this.playerLives>0)
      this.playerLives--;
+    if(window.localStorage.getItem("lives_count_key")!=null){
+
+        window.localStorage.setItem("lives_count_key",this.playerLives);
+
+      }
 
      playerLivesTxt.text = this.playerLives;
     player_res_anim = player.animations.play('right');
@@ -754,11 +822,25 @@ console.log("PowerX: "+power.body.overlapX);
 if(power.body.overlapX < 60 && player.body.overlapX > 30){
   if(power.name.startsWith("life")){
     this.playerLives+=1;
+    this.displayNotif("Lives 1 UP");
+     if(window.localStorage.getItem("lives_count_key")!=null){
+
+        window.localStorage.setItem("lives_count_key",this.playerLives);
+
+      }
     playerLivesTxt.text = this.playerLives;
    playerLivesTxt.fontSize = 32;
    powerup.play();
   }else{
-    this.kunaiCount+=5;
+    this.kunaiCount+=10;
+     this.displayNotif("Knives 10 UP ");
+
+ if(window.localStorage.getItem("kunai_count_key")!=null){
+
+        window.localStorage.setItem("kunai_count_key",this.kunaiCount);
+
+      }
+
     kunaiCountTxt.text = this.kunaiCount;
     kunaiCountTxt.text.fontSize = 32
     powerup.play();
@@ -776,9 +858,39 @@ percentage: function (partialValue, totalValue) {
 
   console.log("Percentage: "+(100 * partialValue) / totalValue);
    return (100 * partialValue) / totalValue;
-} 
+},
+
+onRestart: function(){
+  game.state.start("Game");
+},
+
+onHome: function(){
+
+  gameScore = this.score;
+ if(gameScore > window.localStorage.getItem("high_score_key"))
+ window.localStorage.setItem("high_score_key", gameScore);  
 
 
+  game.state.start("GameOver");
+},
+
+displayNotif: function(textMsg){
+
+
+
+    var titleStyle = { font: 'bold 20pt TheMinion', fill: '#581845', align: 'center'};
+    notif = game.add.text(game.world.centerX, 30, "", titleStyle);
+    //notif.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
+    notif.anchor.set(0.5);
+   
+
+notif.text = textMsg;
+
+   notif.alpha = 0;
+
+    game.add.tween(notif).to( { alpha: 1 }, 500, Phaser.Easing.Linear.None, true, 0, 1000, true);
+    game.time.events.add(Phaser.Timer.SECOND * 2, notif.kill, notif);
+}
 
 
 

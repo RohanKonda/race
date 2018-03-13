@@ -13,8 +13,8 @@ GameOver.prototype = {
   },
 
   addMenuOption: function(text, callback) {
-    var optionStyle = { font: '30pt TheMinion', fill: 'white', align: 'left', stroke: 'rgba(0,0,0,0)', srokeThickness: 4};
-    var txt = game.add.text(game.world.centerX, (this.optionCount * 80) + 300, text, optionStyle);
+    var optionStyle = { font: '20pt TheMinion', fill: 'white', align: 'left', stroke: 'rgba(0,0,0,0)', srokeThickness: 4};
+    var txt = game.add.text(game.world.centerX, (this.optionCount * 80) + 200, text, optionStyle);
     txt.anchor.setTo(0.5);
     txt.stroke = "rgba(0,0,0,0)";
     txt.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
@@ -41,22 +41,76 @@ GameOver.prototype = {
   },
 
   create: function () {
+
+
+this.stage.disableVisibilityChange = false;
+
       gameMusic.stop();
-    game.add.sprite(0, 0, 'gameover-bg');
-    var titleStyle = { font: 'bold 60pt TheMinion', fill: '#581845', align: 'center'};
-    var text = game.add.text(game.world.centerX, 100, "Game Over", titleStyle);
+      if(!menuMusic.isPlaying){
+
+       menuMusic.loop=true;
+        menuMusic.play();
+      }
+   
+    //game.add.sprite(0, 0, 'gameover-bg');
+
+    game.add.sprite(0, 0, 'sky');
+      this.back_land = this.game.add.tileSprite(0,
+        this.game.height - this.game.cache.getImage('back_land').height,
+        this.game.width,
+        this.game.cache.getImage('back_land').height,
+        'back_land'
+    );
+ 
+    this.back_land_2 = this.game.add.tileSprite(0,
+        this.game.height - this.game.cache.getImage('back_land_2').height,
+        this.game.width,
+        this.game.cache.getImage('back_land_2').height,
+        'back_land_2'
+    );
+ 
+    this.cloud = this.game.add.tileSprite(0,
+        this.game.height - this.game.cache.getImage('cloud').height,
+        this.game.width,
+        this.game.cache.getImage('cloud').height,
+        'cloud'
+    );   
+
+
+       this.decor = this.game.add.tileSprite(0,
+        this.game.height - this.game.cache.getImage('decor').height,
+        this.game.width,
+        this.game.cache.getImage('decor').height,
+        'decor'
+    ); 
+
+          this.land = this.game.add.tileSprite(0,
+        this.game.height - this.game.cache.getImage('land').height,
+        this.game.width,
+        this.game.cache.getImage('land').height,
+        'land'
+    ); 
+
+
+
+
+
+    var titleStyle = { font: 'bold 50pt TheMinion', fill: '#581845', align: 'center'};
+    var text = game.add.text(game.world.centerX, 80, "Game Over", titleStyle);
     text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     text.anchor.set(0.5);
 
     var titleStyle2 = { font: 'bold 25pt TheMinion', fill: '#386A18', align: 'center'};
-    var text2 = game.add.text(game.world.centerX, 180, "Score: "+gameScore, titleStyle2);
-    text2.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
+    var text2 = game.add.text(game.world.centerX, 170, "Score: "+gameScore, titleStyle2);
+   // text2.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     text2.anchor.set(0.5);
 
     if(window.localStorage.getItem("high_score_key")!=null){
+            document.addEventListener('deviceready', this.submitHighScore, false);
+
     var titleStyle3 = { font: 'bold 30pt TheMinion', fill: '#386A18', align: 'center'};
-    var text3 = game.add.text(game.world.centerX, 240, "Highest Score: "+window.localStorage.getItem("high_score_key"), titleStyle2);
-    text3.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
+    var text3 = game.add.text(game.world.centerX, 230, "Highest Score: "+window.localStorage.getItem("high_score_key"), titleStyle2);
+    //text3.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     text3.anchor.set(0.5);
   }
 
@@ -78,6 +132,9 @@ document.addEventListener('deviceready', this.initializeStore, false);
     this.addMenuOption('Main Menu', function (e) {
       this.game.state.start("GameMenu");
     })
+    this.addMenuOption('Buy Stuff', function (e){
+      this.game.state.start("Options");
+    });
 
 
 
@@ -86,7 +143,15 @@ if( /(android)/i.test(navigator.userAgent) && (window.localStorage.getItem("remo
 // show the interstitial later, e.g. at end of game level
 if(AdMob){
 
+  
+  menuMusic.pause();
+ 
+  
+ 
+
   AdMob.showInterstitial();
+
+  
 }
 
 }
@@ -129,7 +194,66 @@ if(AdMob){
 
 
      // store.refresh();  
+  },
+
+   update: function(){
+
+        if(this.paused === true){
+  console.log("Game Paused");
+  menuMusic.pause();
+ }else{
+  menuMusic.resume();
+ }
+
+    this.back_land.tilePosition.x -= 0.05;
+    this.back_land_2.tilePosition.x -= 1;
+    this.cloud.tilePosition.x -= 0.75; 
+   // this.clouds_2.tilePosition.x -= 0.55; 
+    this.decor.tilePosition.x -= 1.3; 
+    this.land.tilePosition.x -= 7; 
+  },
+
+  submitHighScore: function () {
+  
+if(window.localStorage.getItem("high_score_key")!=null){
+
+window.plugins.playGamesServices.isSignedIn(function (result) {
+  // ‘result’ is a JSON object with a single boolean property of ‘isSignedIn’
+  // {
+  //    “isSignedIn” : true
+  // }
+
+     var data = {
+      "score": window.localStorage.getItem("high_score_key"),
+  "leaderboardId": "CgkIicixg90MEAIQAA"
+};
+
+
+  console.log("Do something with result.isSignedIn "+ result.isSignedIn);
+  if(result.isSignedIn===false){
+    console.log("before auth");
+    window.plugins.playGamesServices.auth();
+    console.log("after auth");
+ window.plugins.playGamesServices.submitScoreNow(data); 
+ 
+  }else{
+
+   window.plugins.playGamesServices.submitScoreNow(data); 
   }
+
+  
+
+//window.plugins.playGamesServices.signout();
+
+});
+
+
+
+}
+
+
+  }
+
 
 
 

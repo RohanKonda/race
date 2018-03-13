@@ -9,8 +9,8 @@ Credits.prototype = {
   },
 
   addCredit: function(task, author) {
-    var authorStyle = { font: '40pt TheMinion', fill: 'white', align: 'center', stroke: 'rgba(0,0,0,0)', strokeThickness: 4};
-    var taskStyle = { font: '30pt TheMinion', fill: 'white', align: 'center', stroke: 'rgba(0,0,0,0)', strokeThickness: 4};
+    var authorStyle = { font: '25pt TheMinion', fill: 'white', align: 'center', stroke: 'rgba(0,0,0,0)', strokeThickness: 4};
+    var taskStyle = { font: '20pt TheMinion', fill: 'green', align: 'center', stroke: 'rgba(0,0,0,0)', strokeThickness: 4};
     var authorText = game.add.text(game.world.centerX, 900, author, authorStyle);
     var taskText = game.add.text(game.world.centerX, 950, task, taskStyle);
     authorText.anchor.setTo(0.5);
@@ -21,14 +21,14 @@ Credits.prototype = {
     taskText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     taskText.stroke = "rgba(0,0,0,0)";
     taskText.strokeThickness = 4;
-    game.add.tween(authorText).to( { y: -300 }, 7000, Phaser.Easing.Cubic.Out, true, this.creditCount * 2000);
-    game.add.tween(taskText).to( { y: -200 }, 7000, Phaser.Easing.Cubic.Out, true, this.creditCount * 2000);
+    game.add.tween(authorText).to( { y: -150 }, 15000, Phaser.Easing.Cubic.Out, true, this.creditCount * 2000);
+    game.add.tween(taskText).to( { y: -50 }, 14000, Phaser.Easing.Cubic.Out, true, this.creditCount * 2000);
     this.creditCount ++;
   },
 
   addMenuOption: function(text, callback) {
-    var optionStyle = { font: '30pt TheMinion', fill: 'white', align: 'left', stroke: 'rgba(0,0,0,0)', srokeThickness: 4};
-    var txt = game.add.text(10, (this.optionCount * 80) + 450, text, optionStyle);
+    var optionStyle = { font: '20pt TheMinion', fill: 'white', align: 'left', stroke: 'rgba(0,0,0,0)', srokeThickness: 4};
+    var txt = game.add.text(10, (this.optionCount * 60) + 450, text, optionStyle);
 
     txt.stroke = "rgba(0,0,0,0";
     txt.strokeThickness = 4;
@@ -54,21 +54,46 @@ Credits.prototype = {
   },
 
   create: function () {
-    this.stage.disableVisibilityChange = true;
+    this.stage.disableVisibilityChange = false;
     if (gameOptions.playMusic) {
       musicPlayer.stop();
       musicPlayer = game.add.audio('exit');
       musicPlayer.play();
     }
     var bg = game.add.sprite(0, 0, 'gameover-bg');
-    this.addCredit('Music', 'freesound.org');
-    this.addCredit('Game design and development', 'Rohan Prashanth');
+    this.addCredit('Game Music', 'Backstreet Hip Hop: Repaid Gateman');
+    this.addCredit('Menu Music', 'Racing Menu: Eric Matyas');
+    this.addCredit('SFX', 'soundbible.com');
+    this.addCredit('Innapp Plugin', 'Jean-Christophe Hoelt (GitHub)');
+    this.addCredit('RateUs Plugin', 'pushandplay (GitHub)');
+    this.addCredit('AdMob Plugin', 'Raymond Xie  (GitHub)');
+    this.addCredit('Build', 'Cordova');
+    this.addCredit('Framework', 'Phaser');       
+    this.addCredit('SFX', 'soundbible.com');    
     this.addCredit('Ninja Design', 'gameart2d.com');
-    this.addCredit('Thank you', 'Rate us on Play Store');  
+    this.addCredit('Monsters & Background', 'Craftpix');
+    this.addCredit('Game design and development', 'Rohan Prashanth');
+    this.addCredit('Have Fun', 'Rate us on Play Store');  
+    
     this.addMenuOption('<- Back', function (e) {
       game.state.start("GameMenu");
     });
-    game.add.tween(bg).to({alpha: 0}, 20000, Phaser.Easing.Cubic.Out, true, 40000);
-  }
+    //game.add.tween(bg).to({alpha: 0}, 20000, Phaser.Easing.Cubic.Out, true, 40000);
+
+
+
+
+  },
+
+  update: function(){
+      if(this.paused === true){
+  console.log("Game Paused");
+  menuMusic.pause();
+ }else{
+  menuMusic.resume();
+ }
+  },
+
+   
 
 };

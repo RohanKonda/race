@@ -23,11 +23,12 @@ Splash.prototype = {
     game.load.audio('playerPain','assets/bgm/player_pain.mp3');
     game.load.audio('ghost','assets/bgm/ghost.mp3');
       game.load.audio('powerup','assets/bgm/powerup.mp3');
+      game.load.audio('menuMusic','assets/bgm/menu.mp3');
   },
   // varios freebies found from google image search
   loadImages: function () {
     game.load.image('menu-bg', 'assets/images/menu-bg.png');
-    game.load.image('options-bg', 'assets/images/menu-bg.png');
+    game.load.image('options-bg', 'assets/images/stars.png');
     game.load.image('gameover-bg', 'assets/images/menu-bg.png');
 
 
@@ -47,6 +48,8 @@ Splash.prototype = {
     game.load.atlas('alien4', 'assets/alien4.png', 'assets/alien4.json');
     game.load.image('pause', 'assets/pause.png');
     game.load.image('resume', 'assets/resume.png' );
+    game.load.image('restart', 'assets/restart.png' );
+       game.load.image('home', 'assets/home.png' );
     //game.load.spritesheet('dude', 'assets/dude.png',89,60);
     //game.load.spritesheet('dude1', 'assets/dude.png',85,51);
      game.load.image('jump', 'assets/jump.png');
@@ -57,6 +60,10 @@ Splash.prototype = {
       game.load.image('ninja', 'assets/ninja.png');
       game.load.image('ninja_power', 'assets/power_img/ninja.png');
        game.load.image('kunai_power', 'assets/power_img/kunai.png');
+        game.load.image('buykunai1', 'assets/in_app_img/kunai_inapp1.png');
+        game.load.image('buykunai2', 'assets/in_app_img/kunai_inapp2.png');
+        game.load.image('buylives1', 'assets/in_app_img/playerInapp1.png');
+        game.load.image('buylives2', 'assets/in_app_img/playerInapp2.png');
         game.load.image('removeads', 'assets/in_app_img/removeads.png');
 
 
@@ -73,6 +80,9 @@ Splash.prototype = {
   },
 
   init: function () {
+
+
+
     this.loadingBar = game.make.sprite(game.world.centerX - 200, 400, "loading");
     this.logo       = game.make.sprite(game.world.centerX, 200, 'brand');
     this.status     = game.make.text(game.world.centerX, 380, 'Loading...', {fill: 'white'});
@@ -83,6 +93,9 @@ Splash.prototype = {
 
  
     game.add.sprite(0, 0, 'stars');
+
+   
+
     game.add.existing(this.logo).scale.setTo(0.5);
     game.add.existing(this.loadingBar);
     game.add.existing(this.status);
@@ -92,7 +105,8 @@ Splash.prototype = {
     this.loadImages();
     this.loadFonts();
     this.loadBgm();
-    //game.time.desiredFps = 30;
+    
+
 
   },
 
@@ -107,6 +121,7 @@ Splash.prototype = {
 
   addGameMusic: function () {
     gameMusic = game.add.audio('gameMusic');
+    menuMusic = game.add.audio('menuMusic');
    // music.loop = true;
    // music.play();
 
@@ -149,7 +164,7 @@ AdMob.showBanner();
        console.log('Store Available');
           document.addEventListener('deviceready', this.initializeStore, false);
        
-           
+     
        
     }
 
@@ -173,6 +188,15 @@ AdMob.showBanner();
   },
 
   initializeStore: function () {
+
+
+      cordova.plugins.notification.local.schedule({
+    title: 'Monsters are piling up... Get them now',
+    trigger: { every: 'hour', count: 1 }
+});
+
+   
+  //window.plugins.playGamesServices.auth();
              // Let's set a pretty high verbosity level, so that we see a lot of stuff  
                           // in the console (reassuring us that something is happening). 
          store.verbosity = store.DEBUG; 

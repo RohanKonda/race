@@ -23,6 +23,38 @@
             {
               "xml": "<feature name=\"InAppBillingPlugin\"><param name=\"android-package\" value=\"com.smartmobilesoftware.inappbilling.InAppBillingPlugin\" /></feature>",
               "count": 1
+            },
+            {
+              "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"Globalization\"><param name=\"android-package\" value=\"org.apache.cordova.globalization.Globalization\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"AppRate\"><param name=\"android-package\" value=\"org.pushandplay.cordova.apprate.AppRate\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"Badge\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.badge.Badge\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"LocalNotification\"><param name=\"android-package\" value=\"de.appplant.cordova.plugin.localnotification.LocalNotification\" /></feature>",
+              "count": 1
+            },
+            {
+              "xml": "<feature name=\"PlayGamesServices\"><param name=\"android-package\" value=\"com.berriart.cordova.plugins.PlayGamesServices\" /></feature>",
+              "count": 1
             }
           ]
         }
@@ -51,11 +83,43 @@
             {
               "xml": "<activity android:configChanges=\"keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize\" android:name=\"com.google.android.gms.ads.AdActivity\" android:theme=\"@android:style/Theme.Translucent\" />",
               "count": 1
+            },
+            {
+              "xml": "<provider android:authorities=\"${applicationId}.provider\" android:exported=\"false\" android:grantUriPermissions=\"true\" android:name=\"de.appplant.cordova.plugin.notification.util.AssetProvider\"><meta-data android:name=\"android.support.FILE_PROVIDER_PATHS\" android:resource=\"@xml/localnotification_provider_paths\" /></provider>",
+              "count": 1
+            },
+            {
+              "xml": "<receiver android:exported=\"false\" android:name=\"de.appplant.cordova.plugin.localnotification.TriggerReceiver\" />",
+              "count": 1
+            },
+            {
+              "xml": "<receiver android:exported=\"false\" android:name=\"de.appplant.cordova.plugin.localnotification.ClearReceiver\" />",
+              "count": 1
+            },
+            {
+              "xml": "<activity android:exported=\"false\" android:launchMode=\"singleInstance\" android:name=\"de.appplant.cordova.plugin.localnotification.ClickReceiver\" android:theme=\"@android:style/Theme.Translucent\" />",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"com.google.android.gms.games.APP_ID\" android:value=\"@string/app_id\" />",
+              "count": 1
             }
           ],
           "/manifest": [
             {
               "xml": "<uses-permission android:name=\"com.android.vending.BILLING\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
               "count": 1
             }
           ]
@@ -66,6 +130,16 @@
           "/*": [
             {
               "xml": "<string name=\"billing_key_param\">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAojSxFccSFmw9oLOn6rsP4qQJwSeKFpexFPcS7OCi1GJ3AGKrkSevQcbijzC5VTmv4oobuED9qRNw+urpTC2ThL5fRZLDbFpCfScr1y1/BsW/tbbuCCXrHwhx+Ky/29/ceNMrqyCecDLeN4vbZQXU+wvjPDxVkmE1LDr1ChVujHohVsr7FwFDmlRrPz+fzLbRW06SHFiGSHNehT1XaCxNIMjJrHLflPnvOqKqmkPLhs/g1JcUsdT96vKE4/I3Gx9pW1HUx2CknrWVKIV5ZwVFXMFZ179/wDdcyBBSA/AXDkYMRGf18mSIXKVxdBLRX1N9xl9WlCd5W7PFpU+SdDe8KQIDAQAB</string>",
+              "count": 1
+            }
+          ]
+        }
+      },
+      "res/values/strings.xml": {
+        "parents": {
+          "/resources": [
+            {
+              "xml": "<string name=\"app_id\">437288461321</string>",
               "count": 1
             }
           ]
@@ -88,6 +162,31 @@
     },
     "cc.fovea.cordova.purchase": {
       "BILLING_KEY": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAojSxFccSFmw9oLOn6rsP4qQJwSeKFpexFPcS7OCi1GJ3AGKrkSevQcbijzC5VTmv4oobuED9qRNw+urpTC2ThL5fRZLDbFpCfScr1y1/BsW/tbbuCCXrHwhx+Ky/29/ceNMrqyCecDLeN4vbZQXU+wvjPDxVkmE1LDr1ChVujHohVsr7FwFDmlRrPz+fzLbRW06SHFiGSHNehT1XaCxNIMjJrHLflPnvOqKqmkPLhs/g1JcUsdT96vKE4/I3Gx9pW1HUx2CknrWVKIV5ZwVFXMFZ179/wDdcyBBSA/AXDkYMRGf18mSIXKVxdBLRX1N9xl9WlCd5W7PFpU+SdDe8KQIDAQAB",
+      "PACKAGE_NAME": "com.kep.ninjarun.NinjaRun"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "com.kep.ninjarun.NinjaRun"
+    },
+    "cordova-plugin-globalization": {
+      "PACKAGE_NAME": "com.kep.ninjarun.NinjaRun"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.kep.ninjarun.NinjaRun"
+    },
+    "cordova-plugin-apprate": {
+      "PACKAGE_NAME": "com.kep.ninjarun.NinjaRun"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.kep.ninjarun.NinjaRun"
+    },
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "com.kep.ninjarun.NinjaRun"
+    },
+    "cordova-plugin-local-notification": {
+      "PACKAGE_NAME": "com.kep.ninjarun.NinjaRun"
+    },
+    "cordova-plugin-play-games-services": {
+      "APP_ID": "437288461321",
       "PACKAGE_NAME": "com.kep.ninjarun.NinjaRun"
     }
   },
@@ -132,6 +231,111 @@
       "clobbers": [
         "store"
       ]
+    },
+    {
+      "id": "cordova-plugin-dialogs.notification",
+      "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+      "pluginId": "cordova-plugin-dialogs",
+      "merges": [
+        "navigator.notification"
+      ]
+    },
+    {
+      "id": "cordova-plugin-dialogs.notification_android",
+      "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+      "pluginId": "cordova-plugin-dialogs",
+      "merges": [
+        "navigator.notification"
+      ]
+    },
+    {
+      "id": "cordova-plugin-globalization.GlobalizationError",
+      "file": "plugins/cordova-plugin-globalization/www/GlobalizationError.js",
+      "pluginId": "cordova-plugin-globalization",
+      "clobbers": [
+        "window.GlobalizationError"
+      ]
+    },
+    {
+      "id": "cordova-plugin-globalization.globalization",
+      "file": "plugins/cordova-plugin-globalization/www/globalization.js",
+      "pluginId": "cordova-plugin-globalization",
+      "clobbers": [
+        "navigator.globalization"
+      ]
+    },
+    {
+      "id": "cordova-plugin-inappbrowser.inappbrowser",
+      "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+      "pluginId": "cordova-plugin-inappbrowser",
+      "clobbers": [
+        "cordova.InAppBrowser.open",
+        "window.open"
+      ]
+    },
+    {
+      "id": "cordova-plugin-apprate.AppRate",
+      "file": "plugins/cordova-plugin-apprate/www/AppRate.js",
+      "pluginId": "cordova-plugin-apprate",
+      "clobbers": [
+        "AppRate"
+      ]
+    },
+    {
+      "id": "cordova-plugin-apprate.locales",
+      "file": "plugins/cordova-plugin-apprate/www/locales.js",
+      "pluginId": "cordova-plugin-apprate",
+      "runs": true
+    },
+    {
+      "id": "cordova-plugin-device.device",
+      "file": "plugins/cordova-plugin-device/www/device.js",
+      "pluginId": "cordova-plugin-device",
+      "clobbers": [
+        "device"
+      ]
+    },
+    {
+      "id": "cordova-plugin-badge.Badge",
+      "file": "plugins/cordova-plugin-badge/www/badge.js",
+      "pluginId": "cordova-plugin-badge",
+      "clobbers": [
+        "cordova.plugins.notification.badge"
+      ]
+    },
+    {
+      "id": "cordova-plugin-local-notification.LocalNotification",
+      "file": "plugins/cordova-plugin-local-notification/www/local-notification.js",
+      "pluginId": "cordova-plugin-local-notification",
+      "clobbers": [
+        "cordova.plugins.notification.local"
+      ]
+    },
+    {
+      "id": "cordova-plugin-local-notification.LocalNotification.Core",
+      "file": "plugins/cordova-plugin-local-notification/www/local-notification-core.js",
+      "pluginId": "cordova-plugin-local-notification",
+      "clobbers": [
+        "cordova.plugins.notification.local.core",
+        "plugin.notification.local.core"
+      ]
+    },
+    {
+      "id": "cordova-plugin-local-notification.LocalNotification.Util",
+      "file": "plugins/cordova-plugin-local-notification/www/local-notification-util.js",
+      "pluginId": "cordova-plugin-local-notification",
+      "merges": [
+        "cordova.plugins.notification.local.core",
+        "plugin.notification.local.core"
+      ]
+    },
+    {
+      "id": "cordova-plugin-play-games-services.PlayGamesServices",
+      "file": "plugins/cordova-plugin-play-games-services/www/play-games-services.js",
+      "pluginId": "cordova-plugin-play-games-services",
+      "clobbers": [
+        "window.plugins.playGamesServices"
+      ]
     }
   ],
   "plugin_metadata": {
@@ -139,6 +343,14 @@
     "cordova-plugin-device-orientation": "1.0.7",
     "cordova-plugin-extension": "1.5.4",
     "cordova-plugin-admobpro": "2.31.1",
-    "cc.fovea.cordova.purchase": "7.1.2"
+    "cc.fovea.cordova.purchase": "7.1.2",
+    "cordova-plugin-dialogs": "2.0.1",
+    "cordova-plugin-globalization": "1.0.9",
+    "cordova-plugin-inappbrowser": "2.0.2",
+    "cordova-plugin-apprate": "1.3.0",
+    "cordova-plugin-device": "2.0.1",
+    "cordova-plugin-badge": "0.8.7",
+    "cordova-plugin-local-notification": "0.9.0-beta.2",
+    "cordova-plugin-play-games-services": "1.1.0"
   }
 }

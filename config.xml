@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="10007" id="com.kep.ninjarun.NinjaRun" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="10016" id="com.kep.ninjarun.NinjaRun" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Endless Monsters</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -33,5 +33,10 @@
     <plugin name="cordova-plugin-device-orientation" spec="^1.0.7" />
     <plugin name="cordova-plugin-admobpro" spec="^2.31.1" />
     <plugin name="cc.fovea.cordova.purchase" spec="^7.1.2" />
+    <plugin name="cordova-plugin-apprate" spec="^1.3.0" />
+    <plugin name="cordova-plugin-local-notification" spec="^0.9.0-beta.2" />
+    <plugin name="cordova-plugin-play-games-services" spec="^1.1.0">
+        <variable name="APP_ID" value="437288461321" />
+    </plugin>
     <engine name="android" spec="^7.0.0" />
 </widget>
