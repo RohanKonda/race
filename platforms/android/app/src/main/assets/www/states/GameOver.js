@@ -116,16 +116,16 @@ this.stage.disableVisibilityChange = false;
 
 
 console.log("remove_ads_key:"+window.localStorage.getItem("remove_ads_key"))
-    if(window.localStorage.getItem("remove_ads_key") === null || !window.localStorage.getItem("remove_ads_key")==="yes"){
-     this.addMenuOption('Remove Ads', function (e) {
+//     if(window.localStorage.getItem("remove_ads_key") === null || !window.localStorage.getItem("remove_ads_key")==="yes"){
+//      this.addMenuOption('Remove Ads', function (e) {
 
-     // window.localStorage.setItem("remove_ads_key", "yes");   
-         // When purchase is approved show some logs and finish the transaction.
-document.addEventListener('deviceready', this.initializeStore, false);
+//      // window.localStorage.setItem("remove_ads_key", "yes");   
+//          // When purchase is approved show some logs and finish the transaction.
+// document.addEventListener('deviceready', this.initializeStore, false);
 
 
-    });
- }
+//     });
+//  }
     this.addMenuOption('Play Again', function (e) {
       this.game.state.start("Game");
     });
@@ -139,22 +139,22 @@ document.addEventListener('deviceready', this.initializeStore, false);
 
 
 
-if( /(android)/i.test(navigator.userAgent) && (window.localStorage.getItem("remove_ads_key") === null || !window.localStorage.getItem("remove_ads_key")==="yes" )) { 
-// show the interstitial later, e.g. at end of game level
-if(AdMob){
+// if( /(android)/i.test(navigator.userAgent) && (window.localStorage.getItem("remove_ads_key") === null || !window.localStorage.getItem("remove_ads_key")==="yes" )) { 
+// // show the interstitial later, e.g. at end of game level
+// if(AdMob){
 
   
-  menuMusic.pause();
+//   menuMusic.pause();
  
   
  
 
-  AdMob.showInterstitial();
+//   AdMob.showInterstitial();
 
   
-}
+// }
 
-}
+// }
 
   },
 

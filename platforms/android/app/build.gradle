@@ -91,7 +91,6 @@ ext {
 }
 
 // PLUGIN GRADLE EXTENSIONS START
-apply from: "../cordova-plugin-extension/NinjaRun-rjfun-libs.gradle"
 apply from: "../cordova-plugin-badge/NinjaRun-badge.gradle"
 apply from: "../cordova-plugin-local-notification/NinjaRun-localnotification.gradle"
 // PLUGIN GRADLE EXTENSIONS END
@@ -262,7 +261,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: '*.jar')
     // SUB-PROJECT DEPENDENCIES START
     implementation(project(path: ":CordovaLib"))
-    compile "com.google.android.gms:play-services-ads:+"
     compile "com.android.support:support-v4:26.+"
     compile "com.google.android.gms:play-services-games:+"
     compile "com.google.android.gms:play-services-plus:+"

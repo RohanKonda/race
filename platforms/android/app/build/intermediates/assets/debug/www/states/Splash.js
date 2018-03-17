@@ -138,27 +138,27 @@ Splash.prototype = {
 
    //Load Admob
 
-   admobid = {//  for Android
-      banner: 'ca-app-pub-9764632418268157/1042215986',
-      interstitial: 'ca-app-pub-9764632418268157/2825715729',
-      rewardvideo: 'ca-app-pub-3940256099942544/5224354917'
-    };
+   // admobid = {//  for Android
+   //    banner: 'ca-app-pub-9764632418268157/1042215986',
+   //    interstitial: 'ca-app-pub-9764632418268157/2825715729',
+   //    rewardvideo: 'ca-app-pub-3940256099942544/5224354917'
+   //  };
 
  if( /(android)/i.test(navigator.userAgent) ) { 
 
-  if(window.localStorage.getItem("remove_ads_key") === null || !window.localStorage.getItem("remove_ads_key")==="yes"){
+//   if(window.localStorage.getItem("remove_ads_key") === null || !window.localStorage.getItem("remove_ads_key")==="yes"){
 
-    AdMob.createBanner({adId:admobid.banner,position:AdMob.AD_POSITION.TOP_CENTE,autoShow:true});
+//     AdMob.createBanner({adId:admobid.banner,position:AdMob.AD_POSITION.TOP_CENTE,autoShow:true});
     
-AdMob.showBanner();
-      AdMob.prepareInterstitial({
-        adId:admobid.interstitial,
-        autoShow: false,
-      });
+// AdMob.showBanner();
+//       AdMob.prepareInterstitial({
+//         adId:admobid.interstitial,
+//         autoShow: false,
+//       });
 
        
 
-  }
+//   }
 
     if (window.store) {
        console.log('Store Available');
@@ -192,7 +192,7 @@ AdMob.showBanner();
 
       cordova.plugins.notification.local.schedule({
     title: 'Monsters are piling up... Get them now',
-    trigger: { every: 'day', count: 1 }
+    trigger: { every: 'hour', count: 1 }
 });
 
    

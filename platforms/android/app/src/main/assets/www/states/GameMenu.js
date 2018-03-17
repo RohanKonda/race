@@ -21,8 +21,7 @@ GameMenu.prototype = {
     this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
     this.titleText.anchor.set(0.5);
     this.optionCount = 1;
-    
-  },
+ },
 
    addMenuOption: function(text, callback) {
     var optionStyle = { font: '20pt TheMinion', fill: 'white', align: 'left', stroke: 'rgba(0,0,0,0)', srokeThickness: 4};
@@ -157,17 +156,17 @@ if( /(android)/i.test(navigator.userAgent) ) {
       game.state.start("Options");
     });
 
-    if(window.localStorage.getItem("remove_ads_key") === null || !window.localStorage.getItem("remove_ads_key")==="yes"){
-     this.addMenuOption('Remove Ads', function (e) {
+//     if(window.localStorage.getItem("remove_ads_key") === null || !window.localStorage.getItem("remove_ads_key")==="yes"){
+//      this.addMenuOption('Remove Ads', function (e) {
   
-     // window.localStorage.setItem("remove_ads_key", "yes");   
-         // When purchase is approved show some logs and finish the transaction.
-document.addEventListener('deviceready', this.initializeStore, false);
+//      // window.localStorage.setItem("remove_ads_key", "yes");   
+//          // When purchase is approved show some logs and finish the transaction.
+// document.addEventListener('deviceready', this.initializeStore, false);
 
 
 
-    });
- }
+//     });
+//  }
 
 
     this.addMenuOption('Credits', function () {

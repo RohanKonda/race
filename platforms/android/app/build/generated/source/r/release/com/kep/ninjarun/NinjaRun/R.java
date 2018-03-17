@@ -10,21 +10,6 @@ package com.kep.ninjarun.NinjaRun;
 public final class R {
   public static final class attr {
     /**
-     * <p>May be a string value, using '\\;' to escape characters such as
-     * '\\n' or '\\uxxxx' for a unicode character;
-     */
-    public static final int adSize=0x7f010000;
-    /**
-     * <p>May be a string value, using '\\;' to escape characters such as
-     * '\\n' or '\\uxxxx' for a unicode character;
-     */
-    public static final int adSizes=0x7f010001;
-    /**
-     * <p>May be a string value, using '\\;' to escape characters such as
-     * '\\n' or '\\uxxxx' for a unicode character;
-     */
-    public static final int adUnitId=0x7f010002;
-    /**
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
      * attribute in the form
@@ -40,12 +25,12 @@ public final class R {
      * <tr><td>wide</td><td>1</td><td></td></tr>
      * </table>
      */
-    public static final int buttonSize=0x7f010003;
+    public static final int buttonSize=0x7f010000;
     /**
      * <p>May be a boolean value, such as "<code>true</code>" or
      * "<code>false</code>".
      */
-    public static final int circleCrop=0x7f010004;
+    public static final int circleCrop=0x7f010001;
     /**
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
@@ -62,26 +47,26 @@ public final class R {
      * <tr><td>light</td><td>1</td><td></td></tr>
      * </table>
      */
-    public static final int colorScheme=0x7f010005;
+    public static final int colorScheme=0x7f010002;
     /**
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
      * attribute in the form
      * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
      */
-    public static final int font=0x7f010006;
+    public static final int font=0x7f010003;
     /**
      * <p>May be a string value, using '\\;' to escape characters such as
      * '\\n' or '\\uxxxx' for a unicode character;
      */
-    public static final int fontProviderAuthority=0x7f010007;
+    public static final int fontProviderAuthority=0x7f010004;
     /**
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
      * attribute in the form
      * "<code>?[<i>package</i>:]<i>type</i>/<i>name</i></code>".
      */
-    public static final int fontProviderCerts=0x7f010008;
+    public static final int fontProviderCerts=0x7f010005;
     /**
      * <p>Must be one of the following constant values.</p>
      * <table>
@@ -93,7 +78,7 @@ public final class R {
      * <tr><td>blocking</td><td>0</td><td></td></tr>
      * </table>
      */
-    public static final int fontProviderFetchStrategy=0x7f010009;
+    public static final int fontProviderFetchStrategy=0x7f010006;
     /**
      * <p>May be an integer value, such as "<code>100</code>".
      * <p>Must be one of the following constant values.</p>
@@ -105,17 +90,17 @@ public final class R {
      * <tr><td>forever</td><td>ffffffff</td><td></td></tr>
      * </table>
      */
-    public static final int fontProviderFetchTimeout=0x7f01000a;
+    public static final int fontProviderFetchTimeout=0x7f010007;
     /**
      * <p>May be a string value, using '\\;' to escape characters such as
      * '\\n' or '\\uxxxx' for a unicode character;
      */
-    public static final int fontProviderPackage=0x7f01000b;
+    public static final int fontProviderPackage=0x7f010008;
     /**
      * <p>May be a string value, using '\\;' to escape characters such as
      * '\\n' or '\\uxxxx' for a unicode character;
      */
-    public static final int fontProviderQuery=0x7f01000c;
+    public static final int fontProviderQuery=0x7f010009;
     /**
      * <p>Must be one of the following constant values.</p>
      * <table>
@@ -127,15 +112,15 @@ public final class R {
      * <tr><td>normal</td><td>0</td><td></td></tr>
      * </table>
      */
-    public static final int fontStyle=0x7f01000d;
+    public static final int fontStyle=0x7f01000a;
     /**
      * <p>May be an integer value, such as "<code>100</code>".
      */
-    public static final int fontWeight=0x7f01000e;
+    public static final int fontWeight=0x7f01000b;
     /**
      * <p>May be a floating point value, such as "<code>1.2</code>".
      */
-    public static final int imageAspectRatio=0x7f01000f;
+    public static final int imageAspectRatio=0x7f01000c;
     /**
      * <p>Must be one of the following constant values.</p>
      * <table>
@@ -148,7 +133,7 @@ public final class R {
      * <tr><td>none</td><td>0</td><td></td></tr>
      * </table>
      */
-    public static final int imageAspectRatioAdjust=0x7f010010;
+    public static final int imageAspectRatioAdjust=0x7f01000d;
     /**
      * <p>May be a reference to another resource, in the form
      * "<code>@[+][<i>package</i>:]<i>type</i>/<i>name</i></code>" or a theme
@@ -157,7 +142,7 @@ public final class R {
      * <p>May be a string value, using '\\;' to escape characters such as
      * '\\n' or '\\uxxxx' for a unicode character;
      */
-    public static final int scopeUris=0x7f010011;
+    public static final int scopeUris=0x7f01000e;
   }
   public static final class bool {
     public static final int abc_action_bar_embed_tabs=0x7f020000;
@@ -337,14 +322,7 @@ public final class R {
     public static final int common_signin_button_text=0x7f0a0014;
     public static final int common_signin_button_text_long=0x7f0a0015;
     public static final int launcher_name=0x7f0a0016;
-    public static final int s1=0x7f0a0017;
-    public static final int s2=0x7f0a0018;
-    public static final int s3=0x7f0a0019;
-    public static final int s4=0x7f0a001a;
-    public static final int s5=0x7f0a001b;
-    public static final int s6=0x7f0a001c;
-    public static final int s7=0x7f0a001d;
-    public static final int status_bar_notification_info_overflow=0x7f0a001e;
+    public static final int status_bar_notification_info_overflow=0x7f0a0017;
   }
   public static final class style {
     public static final int TextAppearance_Compat_Notification=0x7f0b0000;
@@ -357,59 +335,10 @@ public final class R {
     public static final int TextAppearance_Compat_Notification_Time_Media=0x7f0b0007;
     public static final int TextAppearance_Compat_Notification_Title=0x7f0b0008;
     public static final int TextAppearance_Compat_Notification_Title_Media=0x7f0b0009;
-    public static final int Theme_IAPTheme=0x7f0b000a;
-    public static final int Widget_Compat_NotificationActionContainer=0x7f0b000b;
-    public static final int Widget_Compat_NotificationActionText=0x7f0b000c;
+    public static final int Widget_Compat_NotificationActionContainer=0x7f0b000a;
+    public static final int Widget_Compat_NotificationActionText=0x7f0b000b;
   }
   public static final class styleable {
-    /**
-     * Attributes that can be used with a AdsAttrs.
-     * <p>Includes the following attributes:</p>
-     * <table>
-     * <colgroup align="left" />
-     * <colgroup align="left" />
-     * <tr><th>Attribute</th><th>Description</th></tr>
-     * <tr><td><code>{@link #AdsAttrs_adSize com.kep.ninjarun.NinjaRun:adSize}</code></td><td></td></tr>
-     * <tr><td><code>{@link #AdsAttrs_adSizes com.kep.ninjarun.NinjaRun:adSizes}</code></td><td></td></tr>
-     * <tr><td><code>{@link #AdsAttrs_adUnitId com.kep.ninjarun.NinjaRun:adUnitId}</code></td><td></td></tr>
-     * </table>
-     * @see #AdsAttrs_adSize
-     * @see #AdsAttrs_adSizes
-     * @see #AdsAttrs_adUnitId
-     */
-    public static final int[] AdsAttrs={
-        0x7f010000, 0x7f010001, 0x7f010002
-      };
-    /**
-     * <p>This symbol is the offset where the {@link com.kep.ninjarun.NinjaRun.R.attr#adSize}
-     * attribute's value can be found in the {@link #AdsAttrs} array.
-     *
-     * <p>May be a string value, using '\\;' to escape characters such as
-     * '\\n' or '\\uxxxx' for a unicode character;
-     *
-     * @attr name com.kep.ninjarun.NinjaRun:adSize
-     */
-    public static final int AdsAttrs_adSize=0;
-    /**
-     * <p>This symbol is the offset where the {@link com.kep.ninjarun.NinjaRun.R.attr#adSizes}
-     * attribute's value can be found in the {@link #AdsAttrs} array.
-     *
-     * <p>May be a string value, using '\\;' to escape characters such as
-     * '\\n' or '\\uxxxx' for a unicode character;
-     *
-     * @attr name com.kep.ninjarun.NinjaRun:adSizes
-     */
-    public static final int AdsAttrs_adSizes=1;
-    /**
-     * <p>This symbol is the offset where the {@link com.kep.ninjarun.NinjaRun.R.attr#adUnitId}
-     * attribute's value can be found in the {@link #AdsAttrs} array.
-     *
-     * <p>May be a string value, using '\\;' to escape characters such as
-     * '\\n' or '\\uxxxx' for a unicode character;
-     *
-     * @attr name com.kep.ninjarun.NinjaRun:adUnitId
-     */
-    public static final int AdsAttrs_adUnitId=2;
     /**
      * Attributes that can be used with a FontFamily.
      * <p>Includes the following attributes:</p>
@@ -432,8 +361,8 @@ public final class R {
      * @see #FontFamily_fontProviderQuery
      */
     public static final int[] FontFamily={
-        0x7f010007, 0x7f010008, 0x7f010009, 0x7f01000a, 
-        0x7f01000b, 0x7f01000c
+        0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007, 
+        0x7f010008, 0x7f010009
       };
     /**
      * <p>This symbol is the offset where the {@link com.kep.ninjarun.NinjaRun.R.attr#fontProviderAuthority}
@@ -527,7 +456,7 @@ public final class R {
      * @see #FontFamilyFont_fontWeight
      */
     public static final int[] FontFamilyFont={
-        0x7f010006, 0x7f01000d, 0x7f01000e
+        0x7f010003, 0x7f01000a, 0x7f01000b
       };
     /**
      * <p>This symbol is the offset where the {@link com.kep.ninjarun.NinjaRun.R.attr#font}
@@ -583,7 +512,7 @@ public final class R {
      * @see #LoadingImageView_imageAspectRatioAdjust
      */
     public static final int[] LoadingImageView={
-        0x7f010004, 0x7f01000f, 0x7f010010
+        0x7f010001, 0x7f01000c, 0x7f01000d
       };
     /**
      * <p>This symbol is the offset where the {@link com.kep.ninjarun.NinjaRun.R.attr#circleCrop}
@@ -638,7 +567,7 @@ public final class R {
      * @see #SignInButton_scopeUris
      */
     public static final int[] SignInButton={
-        0x7f010003, 0x7f010005, 0x7f010011
+        0x7f010000, 0x7f010002, 0x7f01000e
       };
     /**
      * <p>This symbol is the offset where the {@link com.kep.ninjarun.NinjaRun.R.attr#buttonSize}

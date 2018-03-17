@@ -41,10 +41,6 @@ this.shootbigAlien = 0;
 var waitGameOverCount=0;
 
 
-
-
-
-
   },
 
 

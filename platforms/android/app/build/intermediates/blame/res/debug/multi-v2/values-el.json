@@ -4,23 +4,6 @@
             "outputFile": "C:\\xampp\\htdocs\\race\\platforms\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-el\\values-el.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Rohan\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-ads-11.8.0.aar\\a088293fd61c20eea2308a1a4b14f3f3\\res\\values-el\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10",
-                        "startColumns": "0,0,0,0,0,0,0",
-                        "startOffsets": "235,310,445,510,576,666,790",
-                        "endColumns": "74,134,64,65,89,123,78",
-                        "endOffsets": "309,444,509,575,665,789,868"
-                    },
-                    "to": {
-                        "startLines": "20,21,22,23,24,25,26",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "2960,3039,3178,3247,3317,3411,3539",
-                        "endColumns": "78,138,68,69,93,127,82",
-                        "endOffsets": "3034,3173,3242,3312,3406,3534,3617"
-                    }
-                },
-                {
                     "source": "C:\\Users\\Rohan\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-11.8.0.aar\\a7d78873167a24f0c3d0f86a5c842678\\res\\values-el\\values.xml",
                     "from": {
                         "startLines": "4",
@@ -47,11 +30,11 @@
                         "endOffsets": "151"
                     },
                     "to": {
-                        "startLines": "27",
+                        "startLines": "20",
                         "startColumns": "4",
-                        "startOffsets": "3622",
+                        "startOffsets": "2960",
                         "endColumns": "100",
-                        "endOffsets": "3718"
+                        "endOffsets": "3056"
                     }
                 },
                 {
